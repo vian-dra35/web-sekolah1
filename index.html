@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Datang Peserta MPLS! - [Nama Sekolah]</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+            overflow-x: hidden; /* Mencegah scroll horizontal */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        /* Hero Section with Dynamic Background */
+        .hero {
+            position: relative;
+            height: 100vh; /* Memenuhi tinggi viewport */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.6); /* Membuat video sedikit lebih gelap agar teks lebih jelas */
+        }
+
+        .hero::before { /* Overlay gelap untuk teks lebih jelas */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Sedikit lebih transparan */
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            transform: translateY(20px); /* Animasi awal */
+            opacity: 0;
+            animation: slideUp 1s forwards;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes slideUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .hero h1 {
+            margin-bottom: 10px;
+            font-size: 3.5em;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+        }
+
+        .hero p {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Header (Optional, if you want a separate header above hero) */
+        header {
+            background: linear-gradient(to right, #007bff, #0056b3);
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: none; /* Sembunyikan jika hero sudah mencakup header utama */
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(51, 51, 51, 0.9); /* Transparan */
+            color: #fff;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: #333; /* Menjadi solid saat di-scroll */
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #007bff;
+            transform: translateY(-3px); /* Animasi hover */
+        }
+
+        /* Sections */
+        .section-padded {
+            padding: 80px 0; /* Padding lebih besar */
+        }
+
+        .bg-light {
+            background-color: #e9ecef;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: #007bff;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -15px;
+            border-radius: 2px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background: #007bff;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 8px; /* Lebih rounded */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background: #0056b3;
+            transform: translateY(-5px); /* Animasi hover lebih dramatis */
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 0.9em;
+        }
+
+        /* Countdown Timer */
+        .countdown-timer {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 25px;
+            border-radius: 10px;
+            display: inline-block;
+            margin-top: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        #countdown {
+            font-size: 3em;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.9);
+            margin-top: 10px;
+        }
+
+        /* Schedule, Material, FAQ Items - Card Styling & Animations */
+        .schedule-item, .material-card, .faq-item {
+            background-color: #fff;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-radius: 12px; /* Lebih rounded */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden; /* Untuk efek glow */
+        }
+
+        .schedule-item:hover, .material-card:hover, .faq-item:hover {
+            transform: translateY(-8px); /* Animasi hover */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .material-card {
+            text-align: center;
+        }
+
+        .material-card h3, .schedule-item h3, .faq-question {
+            color: #007bff;
+            margin-top: 0;
+            font-weight: 600;
+        }
+
+        .schedule-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .schedule-item ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 1.05em;
+        }
+
+        .schedule-item ul li::before {
+            content: '\f058'; /* Font Awesome checkmark icon */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: #28a745; /* Warna hijau */
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Material Grid */
+        .material-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            margin: 30px 0;
+            background-color: #000;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 180px; /* Sedikit lebih tinggi */
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.08); /* Animasi hover lebih dramatis */
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        /* FAQ */
+        .faq-item {
+            cursor: pointer;
+        }
+
+        .faq-question {
+            margin: 0;
+            padding-right: 30px;
+            position: relative;
+            font-size: 1.15em;
+        }
+
+        .faq-question::after {
+            content: '\f067'; /* Plus icon */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1em;
+            transition: transform 0.3s ease;
+            color: #007bff;
+        }
+
+        .faq-item.active .faq-question::after {
+            content: '\f068'; /* Minus icon */
+            transform: translateY(-50%) rotate(0deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            padding-top: 0;
+            font-size: 1em;
+            color: #555;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px; /* Cukup besar untuk menampung teks */
+            padding-top: 15px;
+        }
+
+        /* Contact Info */
+        .contact-info p {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 60px;
+            font-size: 0.9em;
+        }
+
+        /* Animasi Saat Scroll (Fade In Up) */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                height: 80vh; /* Sedikit lebih pendek di mobile */
+                padding: 50px 0;
+            }
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1.2em;
+            }
+            #countdown {
+                font-size: 2.2em;
+            }
+            h2 {
+                font-size: 2em;
+            }
+            nav ul {
+                flex-direction: column;
+                text-align: center;
+            }
+            nav ul li {
+                margin: 5px 0;
+            }
+            .section-padded {
+                padding: 40px 0;
+            }
+            .material-grid, .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            #countdown {
+                font-size: 1.8em;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <video autoplay muted loop class="video-background">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-bright-light-with-abstract-lines-14066-large.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content">
+            <h1>Selamat Datang Calon Peserta Didik Baru!</h1>
+            <p>Bersiap untuk MPLS [Tahun] di [Nama Sekolah]</p>
+            <div class="countdown-timer">
+                <h3>MPLS Dimulai Dalam:</h3>
+                <div id="countdown"></div>
+            </div>
+            <a href="#jadwal" class="btn">Lihat Jadwal Lengkap</a>
+        </div>
+    </div>
+
+    <nav id="mainNav">
+        <div class="container">
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#jadwal">Jadwal MPLS</a></li>
+                <li><a href="#materi">Materi & Panduan</a></li>
+                <li><a href="#sekolah">Tentang Sekolah</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#kontak">Kontak Panitia</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="jadwal" class="section-padded fade-in-up">
+            <div class="container">
+                <h2>Jadwal Kegiatan MPLS</h2>
+                <div class="schedule-item">
+                    <h3>Hari 1: 22 Juli 2025 - Orientasi & Perkenalan</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 07:00 - 07:30: Registrasi Ulang & Apel Pagi</li>
+                        <li><i class="fas fa-check-circle"></i> 07:30 - 09:00: Sambutan Kepala Sekolah & Pembukaan MPLS</li>
+                        <li><i class="fas fa-check-circle"></i> 09:00 - 10:30: Pengenalan Lingkungan Sekolah (Tur Virtual/Fisik)</li>
+                        <li><i class="fas fa-check-circle"></i> 10:30 - 11:00: Istirahat & Snack</li>
+                        <li><i class="fas fa-check-circle"></i> 11:00 - 12:30: Perkenalan Guru & Staf</li>
+                        <li><i class="fas fa-check-circle"></i> 12:30 - 13:00: Ishoma (Istirahat Sholat Makan)</li>
+                        <li><i class="fas fa-check-circle"></i> 13:00 - 14:30: Pembagian Kelompok & Ice Breaking</li>
+                        <li><i class="fas fa-check-circle"></i> 14:30 - 15:00: Pengumuman & Penutupan Hari 1</li>
+                    </ul>
+                </div>
+                <div class="schedule-item">
+                    <h3>Hari 2: 23 Juli 2025 - Wawasan Kebangsaan & Kreativitas</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 07:00 - 07:30: Apel Pagi</li>
+                        <li><i class="fas fa-check-circle"></i> 07:30 - 09:00: Materi Wawasan Kebangsaan</li>
+                        <li><i class="fas fa-check-circle"></i> 09:00 - 10:30: Pelatihan Baris-Berbaris (PBB)</li>
+                        <li><i class="fas fa-check-circle"></i> 10:30 - 11:00: Istirahat & Snack</li>
+                        <li><i class="fas fa-check-circle"></i> 11:00 - 12:30: Sesi Kreativitas: Pentas Seni Kelompok</li>
+                        <li><i class="fas fa-check-circle"></i> 12:30 - 13:00: Ishoma</li>
+                        <li><i class="fas fa-check-circle"></i> 13:00 - 14:30: Pembekalan Budi Pekerti & Anti Narkoba</li>
+                        <li><i class="fas fa-check-circle"></i> 14:30 - 15:00: Pengumuman & Penutupan Hari 2</li>
+                    </ul>
+                </div>
+                <p class="text-center">Jadwal lengkap akan dibagikan saat registrasi ulang.</p>
+            </div>
+        </section>
+
+        <section id="materi" class="section-padded bg-light fade-in-up">
+            <div class="container">
+                <h2>Materi & Panduan MPLS</h2>
+                <div class="material-grid">
+                    <div class="material-card">
+                        <h3>Buku Panduan MPLS</h3>
+                        <p>Unduh panduan lengkap MPLS, berisi tata tertib, seragam, dan lainnya.</p>
+                        <a href="panduan_mpls_2025.pdf" target="_blank" class="btn btn-small">Unduh PDF <i class="fas fa-download"></i></a>
+                    </div>
+                    <div class="material-card">
+                        <h3>Video Perkenalan Sekolah</h3>
+                        <p>Saksikan video singkat tentang fasilitas dan kegiatan seru di sekolah kami.</p>
+                        <a href="https://www.youtube.com/embed/YOUR_SCHOOL_INTRO_VIDEO" target="_blank" class="btn btn-small">Tonton Video <i class="fas fa-play-circle"></i></a>
+                    </div>
+                    <div class="material-card">
+                        <h3>Daftar Perlengkapan</h3>
+                        <p>Pastikan kamu membawa semua perlengkapan yang dibutuhkan setiap hari.</p>
+                        <a href="#" class="btn btn-small" onclick="alert('Daftar perlengkapan MPLS:\n- Alat tulis lengkap (pulpen, pensil, penghapus)\n- Buku catatan kecil\n- Topi dan dasi sekolah (jika sudah ada)\n- Name tag (sesuai instruksi panitia)\n- Botol minum pribadi (reusable)\n- Bekal makanan ringan dan makan siang (atau uang jajan)\n- Pakaian ganti (jika diperlukan untuk aktivitas)\n- Obat-obatan pribadi (jika ada)\n- Semangat dan senyum!');">Lihat Daftar <i class="fas fa-list-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sekolah" class="section-padded fade-in-up">
+            <div class="container">
+                <h2>Tentang [Nama Sekolah]</h2>
+                <p>Didirikan pada tahun [Tahun Pendirian], [Nama Sekolah] adalah lembaga pendidikan unggulan yang berdedikasi untuk menciptakan generasi muda yang cerdas, berkarakter, dan berdaya saing global. Dengan fasilitas modern dan tenaga pendidik profesional, kami berkomitmen untuk mengembangkan potensi setiap siswa secara holistik.</p>
+                <h3>Tur Virtual Sekolah</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/YOUR_SCHOOL_VIRTUAL_TOUR_VIDEO" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <h3>Galeri Foto Kegiatan</h3>
+                <div class="gallery">
+                    <img src="https://via.placeholder.com/400x300?text=Gerbang+Sekolah" alt="Gerbang Sekolah">
+                    <img src="https://via.placeholder.com/400x300?text=Ruang+Kelas" alt="Ruang Kelas">
+                    <img src="https://via.placeholder.com/400x300?text=Laboratorium" alt="Laboratorium">
+                    <img src="https://via.placeholder.com/400x300?text=Perpustakaan" alt="Perpustakaan">
+                    <img src="https://via.placeholder.com/400x300?text=Lapangan+Olahraga" alt="Lapangan Olahraga">
+                    <img src="https://via.placeholder.com/400x300?text=Kegiatan+Ekstrakurikuler" alt="Kegiatan Ekstrakurikuler">
+                    </div>
+            </div>
+        </section>
+
+        <section id="faq" class="section-padded bg-light fade-in-up">
+            <div class="container">
+                <h2>Pertanyaan Umum (FAQ)</h2>
+                <div class="faq-item">
+                    <h3 class="faq-question">Apa itu MPLS?</h3>
+                    <div class="faq-answer">
+                        <p>MPLS (Masa Pengenalan Lingkungan Sekolah) adalah kegiatan yang wajib diikuti oleh seluruh peserta didik baru untuk mengenal lingkungan sekolah, peraturan, program, serta membentuk adaptasi dengan teman-teman dan guru.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Kapan dan di mana MPLS dilaksanakan?</h3>
+                    <div class="faq-answer">
+                        <p>MPLS [Tahun] akan dilaksanakan pada tanggal **22 - 24 Juli 2025** di lingkungan [Nama Sekolah]. Informasi detail mengenai lokasi setiap kegiatan akan disampaikan pada jadwal harian.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Apakah saya perlu membawa bekal makanan?</h3>
+                    <div class="faq-answer">
+                        <p>Disarankan membawa bekal makanan ringan dan botol minum pribadi untuk menjaga hidrasi. Untuk makan siang, kantin sekolah akan beroperasi atau disiapkan makan siang dari panitia (akan diinformasikan lebih lanjut).</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Bagaimana jika saya terlambat atau tidak bisa hadir?</h3>
+                    <div class="faq-answer">
+                        <p>Jika ada kendala, mohon segera menghubungi panitia MPLS melalui kontak yang tertera di website ini agar kami dapat membantu dan memberikan informasi lebih lanjut.</p>
+                    </div>
+                </div>
+                </div>
+        </section>
+
+        <section id="kontak" class="section-padded fade-in-up">
+            <div class="container">
+                <h2>Kontak Panitia MPLS</h2>
+                <p>Jika ada pertanyaan lebih lanjut atau memerlukan bantuan, jangan ragu untuk menghubungi kami. Tim panitia MPLS siap membantu!</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mpls@sekolah.sch.id">mpls@sekolah.sch.id</a></p>
+                    <p><i class="fab fa-whatsapp"></i> <strong>Nomor Telepon/WhatsApp:</strong> +62 8XX XXXX XXXX (Panitia MPLS)</p>
+                    <p><i class="fab fa-instagram"></i> <strong>Media Sosial:</strong> <a href="https://instagram.com/namasekolah" target="_blank">Instagram [Nama Sekolah]</a> | <a href="https://facebook.com/namasekolah" target="_blank">Facebook [Nama Sekolah]</a></p>
+                </div>
+                <p class="text-center" style="margin-top: 30px;">Kami menantikan kehadiranmu!</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 [Nama Sekolah]. Semua Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Countdown Timer ---
+            // Ganti tanggal ini ke tanggal dimulainya MPLS Anda (Tahun, Bulan-1, Hari, Jam, Menit, Detik)
+            // Contoh: 22 Juli 2025, jam 07:00 pagi
+            const mplsDate = new Date('July 22, 2025 07:00:00').getTime();
+            const countdownElement = document.getElementById('countdown');
+
+            if (countdownElement) {
+                const updateCountdown = setInterval(function() {
+                    const now = new Date().getTime();
+                    const distance = mplsDate - now;
+
+                    if (distance < 0) {
+                        clearInterval(updateCountdown);
+                        countdownElement.innerHTML = "MPLS Telah Dimulai!";
+                        return;
+                    }
+
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    countdownElement.innerHTML = `${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
+                }, 1000);
+            }
+
+            // --- FAQ Accordion ---
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+
+            // --- Smooth Scrolling for Navigation ---
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        // Adjust scroll position for fixed header/nav
+                        const offsetTop = targetElement.offsetTop;
+                        const navHeight = document.getElementById('mainNav').offsetHeight;
+                        window.scrollTo({
+                            top: offsetTop - navHeight - 20, // Tambahkan sedikit offset agar tidak terlalu mepet
+                            behavior: 'smooth'
+                        });
+                    }
+
+                    // Remove active class from all and add to clicked one
+                    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // --- Highlight active nav link on scroll ---
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a');
+            const mainNav = document.getElementById('mainNav');
+
+            const highlightNavLink = () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - mainNav.offsetHeight - 50; // Adjust offset
+                    const sectionHeight = section.clientHeight;
+                    if (pageYOffset >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Add/remove scrolled class from nav
+                if (window.scrollY > 100) { // When scrolled more than 100px
+                    mainNav.classList.add('scrolled');
+                } else {
+                    mainNav.classList.remove('scrolled');
+                }
+            };
+
+            window.addEventListener('scroll', highlightNavLink);
+            window.addEventListener('load', highlightNavLink); // Call on load to set initial active link
+
+
+            // --- Fade In Up on Scroll Animation ---
+            const faders = document.querySelectorAll('.fade-in-up');
+
+            const appearOptions = {
+                threshold: 0.2, // Trigger when 20% of the element is visible
+                rootMargin: "0px 0px -50px 0px" // Adjust to trigger slightly earlier
+            };
+
+            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('visible');
+                        appearOnScroll.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+</body>
+</html>
