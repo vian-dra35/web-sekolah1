@@ -12,14 +12,16 @@
     <style>
         /* --- Base & Variables --- */
         :root {
-            --primary-color: #4A90E2; /* Biru cerah */
-            --secondary-color: #50E3C2; /* Hijau tosca */
-            --dark-color: #2c3e50; /* Biru gelap */
-            --light-color: #ecf0f1; /* Abu terang */
-            --text-color: #34495e; /* Abu gelap */
+            --primary-color: #FF6B6B; /* Merah Muda Cerah */
+            --secondary-color: #4ECDC4; /* Tosca Cerah */
+            --accent-color: #FFD166; /* Kuning Cerah */
+            --dark-color: #2D3A4B; /* Biru Tua Kebiruan */
+            --light-color: #F8F9FA; /* Abu Terang Hampir Putih */
+            --text-color: #34495e; /* Abu Gelap */
             --white-color: #ffffff;
             --shadow-light: rgba(0, 0, 0, 0.08);
-            --shadow-medium: rgba(0, 0, 0, 0.15);
+            --shadow-medium: rgba(0, 0, 0, 0.18);
+            --shadow-strong: rgba(0, 0, 0, 0.3);
             --border-radius: 12px;
         }
 
@@ -86,41 +88,61 @@
             text-align: center;
             margin-bottom: 60px;
             position: relative;
-            font-weight: 700;
+            font-weight: 800; /* Lebih tebal */
+            text-transform: uppercase; /* Huruf kapital */
+            letter-spacing: 1px;
         }
 
         .heading-primary::after {
             content: '';
             position: absolute;
-            width: 80px;
-            height: 5px;
-            background-color: var(--primary-color);
+            width: 100px; /* Lebih lebar */
+            height: 6px; /* Lebih tebal */
+            background-color: var(--primary-color); /* Warna primer */
             left: 50%;
             transform: translateX(-50%);
-            bottom: -20px;
+            bottom: -25px; /* Lebih ke bawah */
             border-radius: 3px;
         }
 
         .btn {
             display: inline-block;
-            background: var(--primary-color);
+            background: linear-gradient(45deg, var(--primary-color), #FF9F1C); /* Gradient */
             color: var(--white-color);
             padding: 15px 30px;
-            border-radius: var(--border-radius);
+            border-radius: 50px; /* Lebih bulat */
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-weight: 600;
             border: none;
             cursor: pointer;
-            box-shadow: 0 5px 15px var(--shadow-medium);
+            box-shadow: 0 8px 20px var(--shadow-medium); /* Shadow lebih kuat */
             text-transform: uppercase;
-            letter-spacing: 0.8px;
+            letter-spacing: 1px;
             font-size: 1em;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #FF9F1C, var(--primary-color));
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
         }
 
         .btn:hover {
-            background: #3a7bd5; /* Slightly darker primary */
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transform: translateY(-7px); /* Animasi hover lebih menonjol */
+            box-shadow: 0 12px 25px var(--shadow-strong);
         }
 
         .btn-outline {
@@ -128,6 +150,7 @@
             color: var(--primary-color);
             border: 2px solid var(--primary-color);
             box-shadow: none;
+            background: none; /* Hapus gradient */
         }
 
         .btn-outline:hover {
@@ -149,14 +172,14 @@
             background-color: var(--dark-color); /* Fallback */
         }
 
-        .hero::before { /* Overlay */
+        .hero::before { /* Overlay with gradient */
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+            background: linear-gradient(to bottom right, rgba(45, 58, 75, 0.7), rgba(78, 205, 196, 0.7)); /* Gradient overlay */
             z-index: 1;
         }
 
@@ -193,47 +216,52 @@
 
         .hero h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 4.5em;
+            font-size: 4.8em; /* Lebih besar */
             margin-bottom: 15px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.5); /* Shadow lebih kuat */
             line-height: 1.1;
+            font-weight: 800;
         }
 
         .hero p {
-            font-size: 1.6em;
+            font-size: 1.8em; /* Lebih besar */
             margin-bottom: 40px;
             font-weight: 300;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
         .countdown-timer {
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 25px 40px;
+            background-color: rgba(45, 58, 75, 0.8); /* Warna gelap yang solid */
+            padding: 30px 50px; /* Lebih besar */
             border-radius: var(--border-radius);
             display: inline-block;
             margin-top: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4); /* Shadow lebih kuat */
+            border: 2px solid var(--secondary-color); /* Border warna sekunder */
         }
 
         .countdown-timer h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: var(--light-color);
+            font-size: 1.4em; /* Lebih besar */
+            margin-bottom: 15px;
+            color: var(--accent-color); /* Warna aksen */
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         #countdown {
             font-family: 'Montserrat', sans-serif;
-            font-size: 3.2em;
-            font-weight: 700;
+            font-size: 4em; /* Sangat besar */
+            font-weight: 900; /* Sangat tebal */
             color: var(--secondary-color);
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
         }
 
         /* --- Navigation --- */
         .main-nav {
-            background: rgba(44, 62, 80, 0.95);
-            padding: 15px 0;
-            box-shadow: 0 3px 8px var(--shadow-medium);
+            background: var(--dark-color); /* Warna gelap solid */
+            padding: 18px 0; /* Lebih tebal */
+            box-shadow: 0 5px 15px var(--shadow-strong); /* Shadow lebih kuat */
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -241,7 +269,7 @@
         }
 
         .main-nav.scrolled {
-            background-color: var(--dark-color);
+            background-color: var(--dark-color); /* Tetap gelap */
         }
 
         .main-nav .container {
@@ -257,44 +285,47 @@
         }
 
         .main-nav ul li {
-            margin: 0 15px;
+            margin: 0 18px; /* Jarak lebih lebar */
         }
 
         .main-nav ul li a {
             color: var(--white-color);
             font-weight: 600;
-            padding: 10px 15px;
-            border-radius: 8px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            padding: 12px 20px; /* Padding lebih besar */
+            border-radius: 50px; /* Lebih bulat */
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, color 0.3s ease;
             display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .main-nav ul li a:hover,
         .main-nav ul li a.active {
-            background-color: var(--primary-color);
-            transform: translateY(-3px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background: linear-gradient(45deg, var(--primary-color), #FF9F1C); /* Gradient */
+            color: var(--white-color);
+            transform: translateY(-4px); /* Animasi hover lebih menonjol */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
         }
 
         /* --- Schedule Section --- */
         .schedule-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Ukuran min lebih besar */
+            gap: 35px; /* Jarak lebih lebar */
         }
 
         .schedule-card {
             background-color: var(--white-color);
-            padding: 35px;
+            padding: 40px; /* Padding lebih besar */
             border-radius: var(--border-radius);
-            box-shadow: 0 8px 20px var(--shadow-light);
+            box-shadow: 0 10px 30px var(--shadow-light); /* Shadow lebih kuat */
             transition: transform 0.4s ease, box-shadow 0.4s ease;
-            border-left: 5px solid var(--primary-color);
+            border-left: 8px solid var(--primary-color); /* Border lebih tebal */
         }
 
         .schedule-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px var(--shadow-medium);
+            transform: translateY(-12px); /* Animasi hover lebih menonjol */
+            box-shadow: 0 20px 45px var(--shadow-medium); /* Shadow lebih kuat */
         }
 
         .schedule-card h3 {
@@ -302,15 +333,15 @@
             color: var(--dark-color);
             margin-bottom: 25px;
             font-weight: 700;
-            font-size: 1.5em;
+            font-size: 1.6em; /* Lebih besar */
             display: flex;
             align-items: center;
         }
 
         .schedule-card h3 i {
             color: var(--primary-color);
-            margin-right: 15px;
-            font-size: 1.2em;
+            margin-right: 18px; /* Jarak lebih lebar */
+            font-size: 1.4em; /* Lebih besar */
         }
 
         .schedule-card ul {
@@ -318,10 +349,10 @@
         }
 
         .schedule-card ul li {
-            margin-bottom: 12px;
-            padding-left: 30px;
+            margin-bottom: 15px; /* Jarak lebih lebar */
+            padding-left: 35px; /* Padding lebih besar */
             position: relative;
-            font-size: 1.05em;
+            font-size: 1.1em; /* Lebih besar */
             color: var(--text-color);
         }
 
@@ -329,47 +360,48 @@
             color: var(--secondary-color);
             position: absolute;
             left: 0;
-            top: 3px;
-            font-size: 1.1em;
+            top: 4px; /* Posisi ikon */
+            font-size: 1.2em; /* Lebih besar */
         }
 
         /* --- Material Section --- */
         .material-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ukuran min lebih besar */
+            gap: 35px; /* Jarak lebih lebar */
         }
 
         .material-card {
             background-color: var(--white-color);
-            padding: 30px;
+            padding: 35px; /* Padding lebih besar */
             border-radius: var(--border-radius);
-            box-shadow: 0 8px 20px var(--shadow-light);
+            box-shadow: 0 10px 25px var(--shadow-light); /* Shadow lebih kuat */
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-bottom: 5px solid var(--secondary-color); /* Border bawah warna sekunder */
         }
 
         .material-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px var(--shadow-medium);
+            transform: translateY(-10px); /* Animasi hover lebih menonjol */
+            box-shadow: 0 15px 35px var(--shadow-medium);
         }
 
         .material-card i {
-            font-size: 3em;
+            font-size: 3.5em; /* Lebih besar */
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 25px; /* Jarak lebih lebar */
         }
 
         .material-card h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.4em;
+            font-size: 1.6em; /* Lebih besar */
             color: var(--dark-color);
-            margin-bottom: 15px;
+            margin-bottom: 18px; /* Jarak lebih lebar */
         }
 
         .material-card p {
-            font-size: 0.95em;
-            margin-bottom: 25px;
+            font-size: 1em;
+            margin-bottom: 30px; /* Jarak lebih lebar */
             color: #555;
         }
 
@@ -383,7 +415,8 @@
             max-width: 900px;
             background-color: var(--dark-color);
             border-radius: var(--border-radius);
-            box-shadow: 0 8px 20px var(--shadow-medium);
+            box-shadow: 0 10px 30px var(--shadow-medium); /* Shadow lebih kuat */
+            border: 3px solid var(--accent-color); /* Border aksen */
         }
 
         .video-container iframe {
@@ -398,24 +431,26 @@
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Ukuran min lebih besar */
+            gap: 25px; /* Jarak lebih lebar */
             margin-top: 40px;
         }
 
         .gallery-grid img {
             width: 100%;
-            height: 180px;
+            height: 200px; /* Tinggi lebih besar */
             object-fit: cover;
             border-radius: var(--border-radius);
-            box-shadow: 0 4px 10px var(--shadow-light);
+            box-shadow: 0 6px 15px var(--shadow-light); /* Shadow lebih kuat */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            border: 2px solid var(--light-color); /* Border ringan */
         }
 
         .gallery-grid img:hover {
-            transform: scale(1.03);
-            box-shadow: 0 8px 20px var(--shadow-medium);
+            transform: scale(1.05); /* Skala lebih besar */
+            box-shadow: 0 12px 25px var(--shadow-medium);
+            border-color: var(--primary-color); /* Border warna primer */
         }
 
         /* --- Lightbox --- */
@@ -427,11 +462,11 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.9); /* Lebih gelap */
             justify-content: center;
             align-items: center;
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px); /* For Safari */
+            backdrop-filter: blur(10px); /* Blur lebih kuat */
+            -webkit-backdrop-filter: blur(10px); /* For Safari */
         }
 
         .lightbox-content {
@@ -439,83 +474,65 @@
             max-height: 90%;
             object-fit: contain;
             border-radius: var(--border-radius);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
-            animation: fadeInZoom 0.3s ease-out;
-        }
-
-        @keyframes fadeInZoom {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 25px;
-            right: 35px;
-            color: var(--white-color);
-            font-size: 45px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .lightbox-close:hover {
-            color: var(--primary-color);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8); /* Shadow lebih kuat */
+            animation: fadeInZoom 0.4s ease-out; /* Animasi lebih lama */
         }
 
         /* --- Team Section --- */
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Ukuran min lebih besar */
+            gap: 35px; /* Jarak lebih lebar */
         }
 
         .team-card {
             background-color: var(--white-color);
-            padding: 30px;
+            padding: 35px; /* Padding lebih besar */
             border-radius: var(--border-radius);
-            box-shadow: 0 8px 20px var(--shadow-light);
+            box-shadow: 0 10px 25px var(--shadow-light); /* Shadow lebih kuat */
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-bottom: 5px solid var(--primary-color); /* Border bawah warna primer */
         }
 
         .team-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px var(--shadow-medium);
+            transform: translateY(-10px); /* Animasi hover lebih menonjol */
+            box-shadow: 0 15px 35px var(--shadow-medium);
         }
 
         .team-card img {
-            width: 140px;
-            height: 140px;
+            width: 160px; /* Lebih besar */
+            height: 160px; /* Lebih besar */
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--primary-color);
-            margin-bottom: 20px;
-            box-shadow: 0 3px 10px var(--shadow-light);
+            border: 5px solid var(--secondary-color); /* Border warna sekunder */
+            margin-bottom: 25px; /* Jarak lebih lebar */
+            box-shadow: 0 5px 15px var(--shadow-medium); /* Shadow lebih kuat */
         }
 
         .team-card h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.4em;
+            font-size: 1.5em; /* Lebih besar */
             color: var(--dark-color);
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .team-card p {
             color: #7f8c8d;
             font-weight: 500;
+            font-size: 1.05em;
         }
 
         /* --- Testimonial Section --- */
         .testimonial-container {
-            background-color: var(--primary-color);
+            background: linear-gradient(to right, var(--primary-color), #FF9F1C); /* Gradient */
             color: var(--white-color);
-            padding: 50px;
+            padding: 60px; /* Padding lebih besar */
             border-radius: var(--border-radius);
             text-align: center;
-            max-width: 800px;
+            max-width: 900px; /* Lebih lebar */
             margin: 50px auto;
-            box-shadow: 0 10px 30px var(--shadow-medium);
+            box-shadow: 0 15px 40px var(--shadow-strong); /* Shadow lebih kuat */
             position: relative;
             overflow: hidden;
         }
@@ -527,39 +544,54 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            font-size: 6em;
-            color: rgba(255, 255, 255, 0.15);
+            font-size: 8em; /* Lebih besar */
+            color: rgba(255, 255, 255, 0.1); /* Lebih transparan */
+            z-index: 1;
+        }
+        .testimonial-container::after { /* Quote-right icon */
+            content: '\f10e';
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 8em;
+            color: rgba(255, 255, 255, 0.1);
             z-index: 1;
         }
 
         .testimonial-container p {
-            font-size: 1.3em;
+            font-size: 1.5em; /* Lebih besar */
             font-style: italic;
-            margin-bottom: 25px;
+            margin-bottom: 30px; /* Jarak lebih lebar */
             position: relative;
             z-index: 2;
+            line-height: 1.6;
         }
 
         .testimonial-container .author {
-            font-weight: 600;
-            font-size: 1.1em;
+            font-weight: 700; /* Lebih tebal */
+            font-size: 1.2em; /* Lebih besar */
             position: relative;
             z-index: 2;
+            color: var(--accent-color); /* Warna aksen */
         }
 
         /* --- FAQ Section (Accordion) --- */
         .faq-item {
             background-color: var(--white-color);
-            padding: 25px;
-            margin-bottom: 20px;
+            padding: 30px; /* Padding lebih besar */
+            margin-bottom: 25px; /* Jarak lebih lebar */
             border-radius: var(--border-radius);
-            box-shadow: 0 6px 15px var(--shadow-light);
+            box-shadow: 0 8px 20px var(--shadow-light); /* Shadow lebih kuat */
             cursor: pointer;
-            transition: box-shadow 0.3s ease;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 2px solid transparent; /* Border transparan */
         }
 
         .faq-item:hover {
-            box-shadow: 0 10px 25px var(--shadow-medium);
+            box-shadow: 0 12px 30px var(--shadow-medium);
+            border-color: var(--primary-color); /* Border warna primer */
         }
 
         .faq-question {
@@ -567,9 +599,9 @@
             justify-content: space-between;
             align-items: center;
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.25em;
+            font-size: 1.35em; /* Lebih besar */
             color: var(--dark-color);
-            font-weight: 600;
+            font-weight: 700; /* Lebih tebal */
             margin: 0;
             transition: color 0.3s ease;
         }
@@ -579,27 +611,28 @@
         }
 
         .faq-question i {
-            font-size: 0.8em;
+            font-size: 0.9em;
             color: var(--primary-color);
             transition: transform 0.3s ease;
         }
 
         .faq-item.active .faq-question i {
             transform: rotate(45deg); /* Change plus to close/X */
+            color: var(--secondary-color); /* Warna sekunder saat aktif */
         }
 
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            transition: max-height 0.6s ease-in-out, padding 0.6s ease-in-out; /* Transisi lebih lama */
             padding-top: 0;
-            font-size: 1em;
+            font-size: 1.05em;
             color: var(--text-color);
         }
 
         .faq-item.active .faq-answer {
             max-height: 500px; /* Adjust as needed */
-            padding-top: 20px;
+            padding-top: 25px; /* Padding lebih besar */
         }
 
         /* --- Contact Section --- */
@@ -607,43 +640,50 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
+            gap: 20px; /* Jarak lebih lebar */
             margin-top: 40px;
         }
 
         .contact-info p {
-            font-size: 1.1em;
+            font-size: 1.2em; /* Lebih besar */
             display: flex;
             align-items: center;
             color: var(--text-color);
+            font-weight: 500;
         }
 
         .contact-info p i {
-            margin-right: 12px;
+            margin-right: 15px; /* Jarak lebih lebar */
             color: var(--primary-color);
-            font-size: 1.3em;
+            font-size: 1.5em; /* Lebih besar */
         }
 
         .contact-info a {
-            font-weight: 500;
+            font-weight: 600;
+            color: var(--dark-color); /* Warna teks lebih gelap */
+            transition: color 0.3s ease;
         }
+        .contact-info a:hover {
+            color: var(--primary-color);
+        }
+
 
         /* --- Footer --- */
         footer {
             background: var(--dark-color);
             color: var(--light-color);
             text-align: center;
-            padding: 35px 0;
+            padding: 40px 0; /* Padding lebih besar */
             margin-top: 80px;
-            font-size: 0.95em;
-            box-shadow: 0 -3px 8px var(--shadow-medium);
+            font-size: 1em;
+            box-shadow: 0 -5px 15px var(--shadow-medium); /* Shadow lebih kuat */
         }
 
         /* --- Scroll Reveal Animation --- */
         .reveal {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(50px); /* Geser lebih jauh */
+            transition: opacity 0.9s ease-out, transform 0.9s ease-out; /* Transisi lebih lama */
             will-change: transform, opacity; /* Performance optimization */
         }
 
@@ -655,23 +695,23 @@
         /* --- Responsive Design --- */
         @media (max-width: 992px) {
             .hero h1 {
-                font-size: 3.5em;
+                font-size: 3.8em;
             }
             .hero p {
-                font-size: 1.3em;
+                font-size: 1.5em;
             }
             .heading-primary {
                 font-size: 2.8em;
                 margin-bottom: 50px;
             }
             .countdown-timer {
-                padding: 20px 30px;
+                padding: 25px 40px;
             }
             #countdown {
-                font-size: 2.8em;
+                font-size: 3.2em;
             }
             .main-nav ul li {
-                margin: 0 10px;
+                margin: 0 12px;
             }
             .section-padded {
                 padding: 60px 0;
@@ -689,28 +729,28 @@
                 height: 70vh;
             }
             .hero h1 {
-                font-size: 2.8em;
+                font-size: 3em;
             }
             .hero p {
-                font-size: 1.1em;
+                font-size: 1.2em;
             }
             .heading-primary {
                 font-size: 2.2em;
                 margin-bottom: 40px;
             }
             #countdown {
-                font-size: 2em;
+                font-size: 2.5em;
             }
             .main-nav ul {
                 flex-direction: column;
-                gap: 5px;
+                gap: 8px;
             }
             .main-nav ul li {
                 margin: 0;
                 width: 100%;
             }
             .main-nav ul li a {
-                padding: 10px;
+                padding: 12px;
                 text-align: center;
             }
             .schedule-grid, .material-grid, .gallery-grid, .team-grid {
@@ -719,49 +759,55 @@
             .contact-info p {
                 flex-direction: column;
                 text-align: center;
-                gap: 5px;
+                gap: 8px;
             }
             .contact-info p i {
                 margin-right: 0;
-                margin-bottom: 5px;
+                margin-bottom: 8px;
             }
             .testimonial-container p {
-                font-size: 1.1em;
+                font-size: 1.2em;
             }
             .faq-question {
-                font-size: 1.1em;
+                font-size: 1.2em;
             }
         }
 
         @media (max-width: 480px) {
             .hero h1 {
-                font-size: 2.2em;
+                font-size: 2.5em;
             }
             .hero p {
-                font-size: 0.9em;
+                font-size: 1em;
             }
             .heading-primary {
                 font-size: 1.8em;
                 margin-bottom: 30px;
             }
             #countdown {
-                font-size: 1.5em;
+                font-size: 1.8em;
             }
             .btn {
                 padding: 12px 25px;
                 font-size: 0.9em;
             }
             .schedule-card h3, .material-card h3, .team-card h3, .faq-question {
-                font-size: 1.2em;
+                font-size: 1.3em;
+            }
+            .schedule-card, .material-card, .team-card, .faq-item {
+                padding: 25px;
+            }
+            .testimonial-container {
+                padding: 30px;
             }
         }
     </style>
 </head>
 <body>
     <header class="hero" id="home">
-        <div class="hero-slider-item active" style="background-image: url('https://via.placeholder.com/1920x1080?text=SMKN+5+Yogyakarta+Building');" aria-label="Gedung Utama SMK Negeri 5 Yogyakarta"></div>
-        <div class="hero-slider-item" style="background-image: url('https://via.placeholder.com/1920x1080?text=SMKN+5+Yogyakarta+Students');" aria-label="Siswa-siswi Berinteraksi di Lingkungan Sekolah"></div>
-        <div class="hero-slider-item" style="background-image: url('https://via.placeholder.com/1920x1080?text=SMKN+5+Yogyakarta+Activity');" aria-label="Kegiatan Belajar Mengajar di SMKN 5 Yogyakarta"></div>
+        <div class="hero-slider-item active" style="background-image: url('https://via.placeholder.com/1920x1080?text=SMKN+5+Yogyakarta+Building+Vibrant');" aria-label="Gedung Utama SMK Negeri 5 Yogyakarta"></div>
+        <div class="hero-slider-item" style="background-image: url('https://via.placeholder.com/1920x1080?text=SMKN+5+Yogyakarta+Students+Energetic');" aria-label="Siswa-siswi Berinteraksi di Lingkungan Sekolah"></div>
+        <div class="hero-slider-item" style="background-image: url('https://via.placeholder.com/1920x1080?text=SMKN+5+Yogyakarta+Activity+Dynamic');" aria-label="Kegiatan Belajar Mengajar di SMKN 5 Yogyakarta"></div>
 
         <div class="hero-content reveal">
             <h1>Selamat Datang Calon Peserta Didik Baru!</h1>
@@ -860,14 +906,14 @@
 
                 <h3 class="heading-primary" style="font-size: 2em; margin-bottom: 30px; margin-top: 80px;">Galeri Kegiatan & Fasilitas</h3>
                 <div class="gallery-grid reveal">
-                    <img src="https://via.placeholder.com/600x400?text=Gerbang+Utama+SMK" alt="Gerbang Utama Sekolah">
-                    <img src="https://via.placeholder.com/600x400?text=Ruang+Kelas+Modern" alt="Ruang Kelas Modern">
-                    <img src="https://via.placeholder.com/600x400?text=Lab+Komputer+Canggih" alt="Laboratorium Komputer Canggih">
-                    <img src="https://via.placeholder.com/600x400?text=Perpustakaan+Nyaman" alt="Perpustakaan Sekolah yang Nyaman">
-                    <img src="https://via.placeholder.com/600x400?text=Lapangan+Olahraga+Luas" alt="Lapangan Olahraga">
-                    <img src="https://via.placeholder.com/600x400?text=Workshop+Praktik+Siswa" alt="Workshop Praktik Siswa">
-                    <img src="https://via.placeholder.com/600x400?text=Kegiatan+MPLS+2024" alt="Kegiatan MPLS Tahun Lalu">
-                    <img src="https://via.placeholder.com/600x400?text=Ekstrakurikuler+Seni" alt="Kegiatan Ekstrakurikuler Seni">
+                    <img src="https://via.placeholder.com/600x400?text=Gerbang+Utama+SMK+Warna" alt="Gerbang Utama Sekolah">
+                    <img src="https://via.placeholder.com/600x400?text=Ruang+Kelas+Modern+Warna" alt="Ruang Kelas Modern">
+                    <img src="https://via.placeholder.com/600x400?text=Lab+Komputer+Canggih+Warna" alt="Laboratorium Komputer Canggih">
+                    <img src="https://via.placeholder.com/600x400?text=Perpustakaan+Nyaman+Warna" alt="Perpustakaan Sekolah yang Nyaman">
+                    <img src="https://via.placeholder.com/600x400?text=Lapangan+Olahraga+Luas+Warna" alt="Lapangan Olahraga">
+                    <img src="https://via.placeholder.com/600x400?text=Workshop+Praktik+Siswa+Warna" alt="Workshop Praktik Siswa">
+                    <img src="https://via.placeholder.com/600x400?text=Kegiatan+MPLS+2024+Warna" alt="Kegiatan MPLS Tahun Lalu">
+                    <img src="https://via.placeholder.com/600x400?text=Ekstrakurikuler+Seni+Warna" alt="Kegiatan Ekstrakurikuler Seni">
                 </div>
             </div>
         </section>
@@ -883,22 +929,22 @@
                 <p class="text-center reveal" style="font-size: 1.15em; margin-bottom: 50px; color: #555;">Kenali bapak/ibu guru dan kakak-kakak panitia yang akan membimbingmu selama MPLS. Jangan sungkan untuk bertanya!</p>
                 <div class="team-grid">
                     <div class="team-card reveal">
-                        <img src="https://via.placeholder.com/200x200?text=Bpk+Andi" alt="Foto Bapak Andi S.Pd">
+                        <img src="https://via.placeholder.com/200x200?text=Bpk+Andi+Panitia" alt="Foto Bapak Andi S.Pd">
                         <h3>Bpk. Andi S.Pd</h3>
                         <p>Ketua Panitia MPLS</p>
                     </div>
                     <div class="team-card reveal">
-                        <img src="https://via.placeholder.com/200x200?text=Ibu+Putri" alt="Foto Ibu Putri M.Pd">
+                        <img src="https://via.placeholder.com/200x200?text=Ibu+Putri+Panitia" alt="Foto Ibu Putri M.Pd">
                         <h3>Ibu Putri M.Pd</h3>
                         <p>Koordinator Akademik</p>
                     </div>
                     <div class="team-card reveal">
-                        <img src="https://via.placeholder.com/200x200?text=Kak+Rizky" alt="Foto Kak Rizky">
+                        <img src="https://via.placeholder.com/200x200?text=Kak+Rizky+Panitia" alt="Foto Kak Rizky">
                         <h3>Rizky Pratama</h3>
                         <p>Perwakilan OSIS - Sie Acara</p>
                     </div>
                     <div class="team-card reveal">
-                        <img src="https://via.placeholder.com/200x200?text=Kak+Siti" alt="Foto Kak Siti">
+                        <img src="https://via.placeholder.com/200x200?text=Kak+Siti+Panitia" alt="Foto Kak Siti">
                         <h3>Siti Nurhaliza</h3>
                         <p>Perwakilan OSIS - Sie Logistik</p>
                     </div>
