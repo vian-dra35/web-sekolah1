@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selamat Datang Peserta MPLS! - SMK Negeri 5 yogyakarta</title>
+    <title>Selamat Datang Peserta MPLS! - SMK Negeri 5 Yogyakarta</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* General Styling */
+        /* --- General Styling --- */
         :root {
             --primary-color: #4A90E2; /* Biru cerah */
             --secondary-color: #50E3C2; /* Hijau tosca */
@@ -38,7 +38,7 @@
             padding: 0 20px;
         }
 
-        /* Header / Hero Section */
+        /* --- Header / Hero Section --- */
         .hero {
             position: relative;
             height: 100vh;
@@ -64,6 +64,22 @@
             height: 100%;
             background-color: rgba(0, 0, 0, 0.55); /* Lebih gelap */
             z-index: 0;
+        }
+
+        .hero-bg-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: -1; /* Pindahkan ke belakang overlay */
+        }
+
+        .hero-bg-image.active {
+            opacity: 1;
         }
 
         .hero-content {
@@ -98,7 +114,7 @@
             font-weight: 300;
         }
 
-        /* Navigation */
+        /* --- Navigation --- */
         nav {
             background: rgba(44, 62, 80, 0.95); /* Warna dark-color semi-transparan */
             color: var(--white-color);
@@ -136,6 +152,7 @@
             border-radius: 8px;
             position: relative;
             overflow: hidden;
+            display: block; /* Agar padding dan hover berfungsi baik */
         }
 
         nav ul li a::before { /* Efek glow hover */
@@ -159,7 +176,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* Sections */
+        /* --- Sections --- */
         .section-padded {
             padding: 100px 0; /* Padding lebih besar */
         }
@@ -190,7 +207,7 @@
             border-radius: 3px;
         }
 
-        /* Buttons */
+        /* --- Buttons --- */
         .btn {
             display: inline-block;
             background: var(--primary-color);
@@ -206,6 +223,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 1.1em;
+            margin-top: 20px; /* Tambahan margin */
         }
 
         .btn:hover {
@@ -220,7 +238,7 @@
             border-radius: 8px;
         }
 
-        /* Countdown Timer */
+        /* --- Countdown Timer --- */
         .countdown-timer {
             background-color: rgba(0, 0, 0, 0.75);
             padding: 30px;
@@ -239,7 +257,7 @@
             margin-top: 15px;
         }
 
-        /* Schedule, Material, FAQ Items - Card Styling & Animations */
+        /* --- Schedule, Material, FAQ Items - Card Styling & Animations --- */
         .schedule-item, .material-card, .faq-item, .team-member-card {
             background-color: var(--white-color);
             padding: 35px;
@@ -289,7 +307,7 @@
             font-size: 1.2em;
         }
 
-        /* Material Grid */
+        /* --- Material Grid --- */
         .material-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -297,10 +315,10 @@
             margin-top: 30px;
         }
 
-        /* Video Container */
+        /* --- Video Container --- */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
             margin: 40px 0;
@@ -318,7 +336,7 @@
             border: none;
         }
 
-        /* Gallery */
+        /* --- Gallery --- */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -385,7 +403,7 @@
             color: var(--primary-color);
         }
 
-        /* FAQ */
+        /* --- FAQ --- */
         .faq-item {
             cursor: pointer;
         }
@@ -431,7 +449,7 @@
             padding-top: 20px;
         }
 
-        /* Team Section */
+        /* --- Team Section --- */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -470,7 +488,7 @@
             font-weight: 500;
         }
 
-        /* Testimonial Section */
+        /* --- Testimonial Section --- */
         .testimonial-card {
             background-color: var(--primary-color);
             color: var(--white-color);
@@ -511,8 +529,7 @@
             z-index: 2;
         }
 
-
-        /* Contact Info */
+        /* --- Contact Info --- */
         .contact-info p {
             font-size: 1.15em;
             margin-bottom: 12px;
@@ -539,7 +556,7 @@
             text-decoration: underline;
         }
 
-        /* Footer */
+        /* --- Footer --- */
         footer {
             background: var(--dark-color);
             color: var(--light-color);
@@ -550,7 +567,7 @@
             box-shadow: 0 -3px 8px var(--shadow-medium);
         }
 
-        /* Animasi Saat Scroll (Fade In Up) */
+        /* --- Animasi Saat Scroll (Fade In Up) --- */
         .fade-in-up {
             opacity: 0;
             transform: translateY(40px); /* Lebih jauh */
@@ -562,8 +579,7 @@
             transform: translateY(0);
         }
 
-
-        /* Responsive Design */
+        /* --- Responsive Design --- */
         @media (max-width: 992px) {
             .hero h1 {
                 font-size: 3.5em;
@@ -653,13 +669,13 @@
 </head>
 <body>
     <div class="hero" id="home">
-        <img src="https://via.placeholder.com/1920x1080?text=MPLS+Background+1" class="hero-bg-image active" alt="Background MPLS 1">
-        <img src="https://via.placeholder.com/1920x1080?text=MPLS+Background+2" class="hero-bg-image" alt="Background MPLS 2">
-        <img src="https://via.placeholder.com/1920x1080?text=MPLS+Background+3" class="hero-bg-image" alt="Background MPLS 3">
+        <img src="https://via.placeholder.com/1920x1080?text=SMKN+5+Yogyakarta+Gedung" class="hero-bg-image active" alt="Background MPLS 1">
+        <img src="https://via.placeholder.com/1920x1080?text=SMKN+5+Yogyakarta+Siswa" class="hero-bg-image" alt="Background MPLS 2">
+        <img src="https://via.placeholder.com/1920x1080?text=SMKN+5+Yogyakarta+Kegiatan" class="hero-bg-image" alt="Background MPLS 3">
 
         <div class="hero-content">
             <h1>Selamat Datang Calon Peserta Didik Baru!</h1>
-            <p>Jelajahi Dunia Baru di SMK Negeri 5 yogyakarta </p>
+            <p>Jelajahi Dunia Baru di SMK Negeri 5 Yogyakarta</p>
             <div class="countdown-timer">
                 <h3>MPLS Dimulai Dalam:</h3>
                 <div id="countdown"></div>
@@ -728,12 +744,12 @@
                     <div class="material-card">
                         <h3><i class="fas fa-video"></i> Video Perkenalan Sekolah</h3>
                         <p>Saksikan video singkat tentang fasilitas dan kegiatan seru di sekolah kami.</p>
-                        <a href="http://googleusercontent.com/youtube.com/4" target="_blank" class="btn btn-small">Tonton Video <i class="fas fa-play-circle"></i></a>
+                        <a href="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID_1" target="_blank" class="btn btn-small">Tonton Video <i class="fas fa-play-circle"></i></a>
                     </div>
                     <div class="material-card">
                         <h3><i class="fas fa-clipboard-list"></i> Daftar Perlengkapan</h3>
                         <p>Pastikan kamu membawa semua perlengkapan yang dibutuhkan setiap hari.</p>
-                        <a href="#" class="btn btn-small" onclick="alert('Daftar perlengkapan MPLS:\n- Alat tulis lengkap (pulpen, pensil, penghapus)\n- Buku catatan kecil\n- Topi dan dasi sekolah (jika sudah ada)\n- Name tag (sesuai instruksi panitia)\n- Botol minum pribadi (reusable)\n- Bekal makanan ringan dan makan siang (atau uang jajan)\n- Pakaian ganti (jika diperlukan untuk aktivitas)\n- Obat-obatan pribadi (jika ada)\n- Semangat dan senyum!');">Lihat Daftar <i class="fas fa-eye"></i></a>
+                        <a href="#" class="btn btn-small" id="show-perlengkapan">Lihat Daftar <i class="fas fa-eye"></i></a>
                     </div>
                 </div>
             </div>
@@ -741,11 +757,11 @@
 
         <section id="sekolah" class="section-padded fade-in-up">
             <div class="container">
-                <h2>Tentang SMK Negeri  5 yogyakarta</h2>
-                <p style="text-align: center; font-size: 1.15em; max-width: 800px; margin: 0 auto 50px auto;">Didirikan pada tahun [Tahun Pendirian], [Nama Sekolah Anda] adalah lembaga pendidikan unggulan yang berdedikasi untuk menciptakan generasi muda yang cerdas, berkarakter, dan berdaya saing global. Dengan fasilitas modern dan tenaga pendidik profesional, kami berkomitmen untuk mengembangkan potensi setiap siswa secara holistik.</p>
+                <h2>Tentang SMK Negeri 5 Yogyakarta</h2>
+                <p style="text-align: center; font-size: 1.15em; max-width: 800px; margin: 0 auto 50px auto;">Didirikan pada tahun **1980**, SMK Negeri 5 Yogyakarta adalah lembaga pendidikan unggulan yang berdedikasi untuk menciptakan generasi muda yang cerdas, berkarakter, dan berdaya saing global. Dengan fasilitas modern dan tenaga pendidik profesional, kami berkomitmen untuk mengembangkan potensi setiap siswa secara holistik.</p>
                 <h3><i class="fas fa-vr-cardboard"></i> Tur Virtual Sekolah</h3>
                 <div class="video-container">
-                    <iframe src="http://googleusercontent.com/youtube.com/5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID_2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <h3><i class="fas fa-images"></i> Galeri Foto Kegiatan</h3>
                 <div class="gallery">
@@ -757,9 +773,14 @@
                     <img src="https://via.placeholder.com/600x450?text=Aula+Serbaguna" alt="Aula Serbaguna">
                     <img src="https://via.placeholder.com/600x450?text=Kegiatan+Ekstrakurikuler+1" alt="Kegiatan Ekstrakurikuler 1">
                     <img src="https://via.placeholder.com/600x450?text=Kegiatan+Ekstrakurikuler+2" alt="Kegiatan Ekstrakurikuler 2">
-                    </div>
+                </div>
             </div>
         </section>
+
+        <div id="lightbox" class="lightbox">
+            <span class="lightbox-close">&times;</span>
+            <img class="lightbox-content" id="lightbox-img">
+        </div>
 
         <section id="panitia" class="section-padded bg-light fade-in-up">
             <div class="container">
@@ -767,26 +788,26 @@
                 <p style="text-align: center; font-size: 1.15em; margin-bottom: 50px; color: #555;">Kenalan yuk dengan kakak-kakak dan bapak/ibu guru yang akan membimbingmu selama MPLS!</p>
                 <div class="team-grid">
                     <div class="team-member-card">
-                        <img src="https://via.placeholder.com/200x200?text=Ketua+Panitia" alt="Foto Ketua Panitia">
-                        <h3> suyanto sudirjo</h3>
+                        <img src="https://via.placeholder.com/200x200?text=Bpk+Suyanto" alt="Foto Ketua Panitia">
+                        <h3>Suyanto Sudirjo</h3>
                         <p>Ketua Panitia MPLS</p>
                     </div>
                     <div class="team-member-card">
-                        <img src="https://via.placeholder.com/200x200?text=Sekretaris" alt="Foto Sekretaris">
-                        <h3>welas asri</h3>
+                        <img src="https://via.placeholder.com/200x200?text=Ibu+Welas" alt="Foto Sekretaris">
+                        <h3>Welas Asri</h3>
                         <p>Sekretaris Panitia</p>
                     </div>
                     <div class="team-member-card">
-                        <img src="https://via.placeholder.com/200x200?text=Koordinator+Acara" alt="Foto Koordinator Acara">
-                        <h3>kusumo sudirjo</h3>
+                        <img src="https://via.placeholder.com/200x200?text=Bpk+Kusumo" alt="Foto Koordinator Acara">
+                        <h3>Kusumo Sudirjo</h3>
                         <p>Koordinator Acara</p>
                     </div>
                     <div class="team-member-card">
-                        <img src="https://via.placeholder.com/200x200?text=Sie+Perlengkapan" alt="Foto Sie Perlengkapan">
-                        <h3>Kak yanti asri</h3>
+                        <img src="https://via.placeholder.com/200x200?text=Kak+Yanti" alt="Foto Sie Perlengkapan">
+                        <h3>Kak Yanti Asri</h3>
                         <p>Sie Perlengkapan</p>
                     </div>
-                    </div>
+                </div>
             </div>
         </section>
 
@@ -794,10 +815,10 @@
             <div class="container">
                 <h2>Apa Kata Mereka?</h2>
                 <div class="testimonial-card">
-                    <p>"MPLS di SMK Negeri 5 yogyakarta sangat berkesan! Saya jadi lebih cepat beradaptasi, kenal banyak teman, dan tahu potensi diri. Pengalaman yang tak terlupakan!"</p>
-                    <div class="author">- jarwo kusumo, Alumni Angkatan 2022</div>
+                    <p>"MPLS di SMK Negeri 5 Yogyakarta sangat berkesan! Saya jadi lebih cepat beradaptasi, kenal banyak teman, dan tahu potensi diri. Pengalaman yang tak terlupakan!"</p>
+                    <div class="author">- Jarwo Kusumo, Alumni Angkatan 2022</div>
                 </div>
-                </div>
+            </div>
         </section>
 
         <section id="faq" class="section-padded bg-light fade-in-up">
@@ -806,13 +827,13 @@
                 <div class="faq-item">
                     <h3 class="faq-question">Apa itu MPLS?</h3>
                     <div class="faq-answer">
-                        <p>MPLS (Masa Pengenalan Lingkungan Sekolah) adalah kegiatan yang wajib diikuti oleh seluruh peserta didik baru untuk mengenal lingkungan sekolah, peraturan, program, serta membentuk adaptasi dengan teman-teman dan guru. Ini adalah langkah awal yang menyenangkan untuk memulai perjalanan pendidikan Anda di [Nama Sekolah Anda]!</p>
+                        <p>MPLS (Masa Pengenalan Lingkungan Sekolah) adalah kegiatan yang wajib diikuti oleh seluruh peserta didik baru untuk mengenal lingkungan sekolah, peraturan, program, serta membentuk adaptasi dengan teman-teman dan guru. Ini adalah langkah awal yang menyenangkan untuk memulai perjalanan pendidikan Anda di SMK Negeri 5 Yogyakarta!</p>
                     </div>
                 </div>
                 <div class="faq-item">
                     <h3 class="faq-question">Kapan dan di mana MPLS dilaksanakan?</h3>
                     <div class="faq-answer">
-                        <p>MPLS 2025 akan dilaksanakan pada tanggal **23 - 24 Juli 2025** di lingkungan SMK Negeri 5 yogyakarta. Informasi detail mengenai lokasi setiap kegiatan akan disampaikan pada jadwal harian dan juga di grup komunikasi resmi.</p>
+                        <p>MPLS 2025 akan dilaksanakan pada tanggal **22 - 23 Juli 2025** di lingkungan SMK Negeri 5 Yogyakarta. Informasi detail mengenai lokasi setiap kegiatan akan disampaikan pada jadwal harian dan juga di grup komunikasi resmi.</p>
                     </div>
                 </div>
                 <div class="faq-item">
@@ -833,7 +854,7 @@
                         <p>MPLS dirancang untuk melatih kemandirian peserta didik baru. Oleh karena itu, pendampingan langsung oleh orang tua/wali tidak diperkenankan di area kegiatan utama. Namun, kami akan menyediakan area tunggu khusus jika diperlukan dan selalu siap berkomunikasi melalui kontak yang tersedia.</p>
                     </div>
                 </div>
-                </div>
+            </div>
         </section>
 
         <section id="kontak" class="section-padded fade-in-up">
@@ -841,185 +862,154 @@
                 <h2>Hubungi Kami</h2>
                 <p style="text-align: center; font-size: 1.15em; margin-bottom: 50px; color: #555;">Jangan ragu untuk menghubungi tim panitia MPLS jika Anda memiliki pertanyaan atau memerlukan bantuan. Kami siap melayani Anda!</p>
                 <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mpls@sekolah.sch.id">mpls@sekolah.sch.id</a></p>
-                    <p><i class="fab fa-whatsapp"></i> <strong>Nomor Telepon/WhatsApp:</strong> +62 8XX XXXX XXXX (Panitia MPLS)</p>
-                    <p><i class="fas fa-map-marker-alt"></i> <strong>Alamat:</strong> Jl. [Nama Jalan], No. [Nomor], [Kota], [Provinsi], [Kode Pos]</p>
-                    <p><i class="fas fa-globe"></i> <strong>Website Sekolah:</strong> <a href="https://www.namasekolah.sch.id" target="_blank">www.namasekolah.sch.id</a></p>
-                    <p><i class="fab fa-instagram"></i> <strong>Instagram:</strong> <a href="https://instagram.com/namasekolah" target="_blank">@namasekolah</a></p>
-                    <p><i class="fab fa-facebook"></i> <strong>Facebook:</strong> <a href="https://facebook.com/namasekolah" target="_blank">/namasekolah</a></p>
+                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mpls@smkn5yogyakarta.sch.id">mpls@smkn5yogyakarta.sch.id</a></p>
+                    <p><i class="fab fa-whatsapp"></i> <strong>WhatsApp:</strong> <a href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890 (Panitia MPLS)</a></p>
+                    <p><i class="fas fa-phone"></i> <strong>Telepon:</strong> <a href="tel:+62274123456">+62 (274) 123456</a></p>
+                    <p><i class="fas fa-map-marker-alt"></i> <strong>Alamat:</strong> Jl. Pendidikan No. 5, Yogyakarta, Indonesia</p>
                 </div>
-                <p class="text-center" style="margin-top: 50px; font-size: 1.2em; font-weight: 600; color: var(--primary-color);">Kami menantikan kehadiranmu di MPLS [Tahun]!</p>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 SMK Negeri 5 yogyakarta. Dibuat dengan Semangat untuk Generasi Penerus Bangsa.</p>
+            <p>&copy; 2025 SMK Negeri 5 Yogyakarta. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <div class="lightbox" id="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img" src="" alt="Enlarged Image">
-    </div>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- Countdown Timer ---
-            // Ganti tanggal ini ke tanggal dimulainya MPLS Anda (Tahun, Bulan-1, Hari, Jam, Menit, Detik)
-            // Contoh: 22 Juli 2025, jam 07:00 pagi
-            const mplsDate = new Date('July 22, 2025 07:00:00').getTime();
-            const countdownElement = document.getElementById('countdown');
-
-            if (countdownElement) {
-                const updateCountdown = setInterval(function() {
-                    const now = new Date().getTime();
-                    const distance = mplsDate - now;
-
-                    if (distance < 0) {
-                        clearInterval(updateCountdown);
-                        countdownElement.innerHTML = "MPLS Telah Dimulai!";
-                        return;
-                    }
-
-                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                    countdownElement.innerHTML = `${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
-                }, 1000);
-            }
-
-            // --- FAQ Accordion ---
-            const faqItems = document.querySelectorAll('.faq-item');
-
-            faqItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    this.classList.toggle('active');
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
+                // Remove active class from all and add to clicked
+                document.querySelectorAll('nav ul li a').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Set active class on nav links based on scroll position
+        const sections = document.querySelectorAll('section');
+        const navLi = document.querySelectorAll('nav ul li');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - sectionHeight / 3) { // Adjust sensitivity
+                    current = section.getAttribute('id');
+                }
             });
 
-            // --- Smooth Scrolling for Navigation ---
-            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-
-                    if (targetElement) {
-                        const navHeight = document.getElementById('mainNav').offsetHeight;
-                        const offsetTop = targetElement.offsetTop;
-                        
-                        // Scroll ke posisi target, dikurangi tinggi nav dan sedikit padding
-                        window.scrollTo({
-                            top: offsetTop - navHeight - 30, // Menyesuaikan agar tidak tertutup nav
-                            behavior: 'smooth'
-                        });
-                    }
-
-                    // Remove active class from all and add to clicked one
-                    document.querySelectorAll('nav a').forEach(link => link.classList.remove('active'));
-                    this.classList.add('active');
-                });
+            navLi.forEach(li => {
+                li.querySelectorAll('a').forEach(a => a.classList.remove('active'));
+                if (current && li.querySelector(`a[href*=${current}]`)) {
+                    li.querySelector(`a[href*=${current}]`).classList.add('active');
+                }
             });
 
-            // --- Highlight active nav link on scroll & Nav Scrolled Effect ---
-            const sections = document.querySelectorAll('section[id], .hero[id]');
-            const navLinks = document.querySelectorAll('nav a');
+            // Sticky nav bar color change
             const mainNav = document.getElementById('mainNav');
+            if (window.scrollY > 50) {
+                mainNav.classList.add('scrolled');
+            } else {
+                mainNav.classList.remove('scrolled');
+            }
+        });
 
-            const highlightNavLink = () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - mainNav.offsetHeight - 100; // Adjust offset
-                    if (pageYOffset >= sectionTop) {
-                        current = section.getAttribute('id');
-                    }
-                });
+        // Countdown Timer
+        const countdownElement = document.getElementById('countdown');
+        // Set the date we're counting down to (22 Juli 2025, 07:00 WIB)
+        const countdownDate = new Date("Jul 22, 2025 07:00:00").getTime();
 
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').includes(current)) {
-                        link.classList.add('active');
-                    }
-                });
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
 
-                // Add/remove scrolled class from nav
-                if (window.scrollY > 100) { // When scrolled more than 100px
-                    mainNav.classList.add('scrolled');
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (distance < 0) {
+                clearInterval(x);
+                countdownElement.innerHTML = "MPLS SUDAH DIMULAI!";
+            }
+        }, 1000);
+
+        // Hero Background Slideshow
+        const heroImages = document.querySelectorAll('.hero-bg-image');
+        let currentImageIndex = 0;
+
+        function changeHeroImage() {
+            heroImages[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+            heroImages[currentImageIndex].classList.add('active');
+        }
+        setInterval(changeHeroImage, 5000); // Change image every 5 seconds
+
+        // Fade In Up on Scroll Animation
+        const faders = document.querySelectorAll('.fade-in-up');
+        const appearOptions = {
+            threshold: 0.2, // When 20% of the element is visible
+            rootMargin: "0px 0px -50px 0px" // Start animation 50px before it reaches the viewport bottom
+        };
+
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
                 } else {
-                    mainNav.classList.remove('scrolled');
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
                 }
-            };
-
-            window.addEventListener('scroll', highlightNavLink);
-            window.addEventListener('load', highlightNavLink); // Call on load to set initial active link
-
-            // --- Fade In Up on Scroll Animation ---
-            const faders = document.querySelectorAll('.fade-in-up');
-
-            const appearOptions = {
-                threshold: 0.2, // Trigger when 20% of the element is visible
-                rootMargin: "0px 0px -80px 0px" // Adjust to trigger slightly earlier
-            };
-
-            const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
-                entries.forEach(entry => {
-                    if (!entry.isIntersecting) {
-                        return;
-                    } else {
-                        entry.target.classList.add('visible');
-                        appearOnScroll.unobserve(entry.target); // Stop observing once visible
-                    }
-                });
-            }, appearOptions);
-
-            faders.forEach(fader => {
-                appearOnScroll.observe(fader);
             });
+        }, appearOptions);
 
-            // --- Hero Background Image Slideshow ---
-            const heroImages = document.querySelectorAll('.hero-bg-image');
-            let currentImageIndex = 0;
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
 
-            function changeHeroBackground() {
-                heroImages[currentImageIndex].classList.remove('active');
-                currentImageIndex = (currentImageIndex + 1) % heroImages.length;
-                heroImages[currentImageIndex].classList.add('active');
-            }
-
-            // Hanya jalankan slideshow jika ada lebih dari 1 gambar
-            if (heroImages.length > 1) {
-                setInterval(changeHeroBackground, 5000); // Ganti gambar setiap 5 detik
-            } else if (heroImages.length === 1) {
-                heroImages[0].classList.add('active'); // Pastikan gambar tunggal tetap aktif
-            }
-
-            // --- Gallery Lightbox ---
-            const galleryImages = document.querySelectorAll('.gallery img');
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
-            const lightboxClose = document.querySelector('.lightbox-close');
-
-            galleryImages.forEach(img => {
-                img.addEventListener('click', function() {
-                    lightbox.style.display = 'flex';
-                    lightboxImg.src = this.src;
-                });
+        // FAQ Accordion
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
             });
+        });
 
-            lightboxClose.addEventListener('click', function() {
+        // Material Card - Show Perlengkapan Alert
+        document.getElementById('show-perlengkapan').addEventListener('click', function(e) {
+            e.preventDefault();
+            alert('Daftar perlengkapan MPLS:\n- Alat tulis lengkap (pulpen, pensil, penghapus)\n- Buku catatan kecil\n- Topi dan dasi sekolah (jika sudah ada)\n- Name tag (sesuai instruksi panitia)\n- Botol minum pribadi (reusable)\n- Bekal makanan ringan dan makan siang (atau uang jajan)\n- Pakaian ganti (jika diperlukan untuk aktivitas)\n- Obat-obatan pribadi (jika ada)\n- Semangat dan senyum!');
+        });
+
+        // Gallery Lightbox
+        const galleryImages = document.querySelectorAll('.gallery img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+
+        galleryImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = img.src;
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
                 lightbox.style.display = 'none';
-            });
-
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) { // Tutup jika klik di luar gambar
-                    lightbox.style.display = 'none';
-                }
-            });
+            }
         });
     </script>
 </body>
