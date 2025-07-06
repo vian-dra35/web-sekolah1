@@ -3,1197 +3,485 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Selamat Datang Peserta MPLS! - SMK Negeri 5 Yogyakarta</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
+    <title>Nama Perusahaan Klien Anda - Solusi Inovatif</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Custom CSS -->
     <style>
-        /* --- Base & Variables --- */
-        :root {
-            --primary-color: #FF6B6B; /* Merah Muda Cerah */
-            --secondary-color: #4ECDC4; /* Tosca Cerah */
-            --accent-color: #FFD166; /* Kuning Cerah */
-            --dark-color: #2D3A4B; /* Biru Tua Kebiruan */
-            --light-color: #F8F9FA; /* Abu Terang Hampir Putih */
-            --text-color: #34495e; /* Abu Gelap */
-            --white-color: #ffffff;
-            --shadow-light: rgba(0, 0, 0, 0.08);
-            --shadow-medium: rgba(0, 0, 0, 0.18);
-            --shadow-strong: rgba(0, 0, 0, 0.3);
-            --border-radius: 12px;
-        }
+        /* Mengimpor font Inter dari Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        /* Gaya dasar untuk body */
         body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.7;
-            color: var(--text-color);
-            background-color: var(--light-color);
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            color: #334155; /* Warna teks utama, setara dengan gray-800 di Tailwind */
+            -webkit-font-smoothing: antialiased; /* Menghaluskan font untuk tampilan yang lebih baik */
+            -moz-osx-font-smoothing: grayscale; /* Menghaluskan font untuk tampilan yang lebih baik di Firefox */
         }
 
-        a {
-            text-decoration: none;
-            color: var(--primary-color);
-            transition: color 0.3s ease;
+        /* Gaya untuk navbar */
+        .navbar {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Bayangan kecil di bawah navbar */
         }
 
-        a:hover {
-            color: var(--dark-color);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 15px;
-        }
-
-        /* --- Reusable Components --- */
-        .section-padded {
-            padding: 80px 0;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .bg-light {
-            background-color: var(--light-color);
-        }
-
-        .bg-white {
-            background-color: var(--white-color);
-        }
-
-        .heading-primary {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3.2em;
-            color: var(--dark-color);
-            text-align: center;
-            margin-bottom: 60px;
+        /* Gaya untuk bagian hero (layar penuh) */
+        .hero-section {
             position: relative;
-            font-weight: 800; /* Lebih tebal */
-            text-transform: uppercase; /* Huruf kapital */
-            letter-spacing: 1px;
-        }
-
-        .heading-primary::after {
-            content: '';
-            position: absolute;
-            width: 100px; /* Lebih lebar */
-            height: 6px; /* Lebih tebal */
-            background-color: var(--primary-color); /* Warna primer */
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: -25px; /* Lebih ke bawah */
-            border-radius: 3px;
-        }
-
-        .btn {
-            display: inline-block;
-            background: linear-gradient(45deg, var(--primary-color), #FF9F1C); /* Gradient */
-            color: var(--white-color);
-            padding: 15px 30px;
-            border-radius: 50px; /* Lebih bulat */
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 8px 20px var(--shadow-medium); /* Shadow lebih kuat */
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 1em;
-            position: relative;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #FF9F1C, var(--primary-color));
-            transition: left 0.3s ease;
-            z-index: -1;
-        }
-
-        .btn:hover::before {
-            left: 0;
-        }
-
-        .btn:hover {
-            transform: translateY(-7px); /* Animasi hover lebih menonjol */
-            box-shadow: 0 12px 25px var(--shadow-strong);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-            box-shadow: none;
-            background: none; /* Hapus gradient */
-        }
-
-        .btn-outline:hover {
-            background: var(--primary-color);
-            color: var(--white-color);
-            box-shadow: 0 5px 15px var(--shadow-medium);
-        }
-
-        /* --- Header / Hero Section --- */
-        .hero {
-            position: relative;
-            height: 100vh;
+            height: 100vh; /* Tinggi 100% dari viewport height */
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white-color);
+            align-items: center; /* Pusatkan konten secara vertikal */
+            justify-content: center; /* Pusatkan konten secara horizontal */
             text-align: center;
-            overflow: hidden;
-            background-color: var(--dark-color); /* Fallback */
+            color: white;
+            background: linear-gradient(to right, #4F46E5, #8B5CF6); /* Gradien warna dari indigo-600 ke purple-600 */
+            overflow: hidden; /* Sembunyikan konten yang meluap */
         }
 
-        .hero::before { /* Overlay with gradient */
-            content: '';
+        /* Gaya untuk latar belakang hero */
+        .hero-bg {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom right, rgba(45, 58, 75, 0.7), rgba(78, 205, 196, 0.7)); /* Gradient overlay */
-            z-index: 1;
+            inset: 0; /* Menutupi seluruh area parent */
+            background-size: cover; /* Memastikan gambar latar belakang menutupi seluruh area */
+            background-position: center; /* Pusatkan gambar latar belakang */
+            opacity: 0.3; /* Transparansi gambar latar belakang */
         }
 
-        .hero-slider-item {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            z-index: 0;
-        }
-
-        .hero-slider-item.active {
-            opacity: 1;
-        }
-
+        /* Gaya untuk konten hero */
         .hero-content {
             position: relative;
-            z-index: 2;
-            max-width: 900px;
-            padding: 20px;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: slideUp 1s forwards ease-out 0.5s;
+            z-index: 10; /* Pastikan konten di atas latar belakang */
+            padding: 1.5rem;
+            max-width: 900px; /* Lebar maksimum konten */
         }
 
-        @keyframes slideUp {
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 4.8em; /* Lebih besar */
-            margin-bottom: 15px;
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.5); /* Shadow lebih kuat */
-            line-height: 1.1;
-            font-weight: 800;
-        }
-
-        .hero p {
-            font-size: 1.8em; /* Lebih besar */
-            margin-bottom: 40px;
-            font-weight: 300;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
-        }
-
-        .countdown-timer {
-            background-color: rgba(45, 58, 75, 0.8); /* Warna gelap yang solid */
-            padding: 30px 50px; /* Lebih besar */
-            border-radius: var(--border-radius);
-            display: inline-block;
-            margin-top: 30px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4); /* Shadow lebih kuat */
-            border: 2px solid var(--secondary-color); /* Border warna sekunder */
-        }
-
-        .countdown-timer h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4em; /* Lebih besar */
-            margin-bottom: 15px;
-            color: var(--accent-color); /* Warna aksen */
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        #countdown {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 4em; /* Sangat besar */
-            font-weight: 900; /* Sangat tebal */
-            color: var(--secondary-color);
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.7);
-        }
-
-        /* --- Navigation --- */
-        .main-nav {
-            background: var(--dark-color); /* Warna gelap solid */
-            padding: 18px 0; /* Lebih tebal */
-            box-shadow: 0 5px 15px var(--shadow-strong); /* Shadow lebih kuat */
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: background-color 0.3s ease;
-        }
-
-        .main-nav.scrolled {
-            background-color: var(--dark-color); /* Tetap gelap */
-        }
-
-        .main-nav .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .main-nav ul {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .main-nav ul li {
-            margin: 0 18px; /* Jarak lebih lebar */
-        }
-
-        .main-nav ul li a {
-            color: var(--white-color);
+        /* Gaya untuk tombol hero */
+        .btn-hero {
+            background-color: white;
+            color: #4F46E5; /* Warna teks indigo-600 */
+            border-radius: 9999px; /* Sudut sangat bulat (full rounded) */
             font-weight: 600;
-            padding: 12px 20px; /* Padding lebih besar */
-            border-radius: 50px; /* Lebih bulat */
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease, color 0.3s ease;
-            display: block;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            padding: 0.75rem 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Bayangan tombol */
+            transition: all 0.3s ease-in-out; /* Transisi halus untuk efek hover */
         }
 
-        .main-nav ul li a:hover,
-        .main-nav ul li a.active {
-            background: linear-gradient(45deg, var(--primary-color), #FF9F1C); /* Gradient */
-            color: var(--white-color);
-            transform: translateY(-4px); /* Animasi hover lebih menonjol */
-            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        /* Efek hover untuk tombol hero */
+        .btn-hero:hover {
+            background-color: #E0E7FF; /* Warna latar belakang indigo-100 */
+            color: #4F46E5;
+            transform: scale(1.05); /* Sedikit membesar saat di-hover */
         }
 
-        /* --- Schedule Section --- */
-        .schedule-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Ukuran min lebih besar */
-            gap: 35px; /* Jarak lebih lebar */
+        /* Animasi */
+        /* Animasi Fade In Down */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .schedule-card {
-            background-color: var(--white-color);
-            padding: 40px; /* Padding lebih besar */
-            border-radius: var(--border-radius);
-            box-shadow: 0 10px 30px var(--shadow-light); /* Shadow lebih kuat */
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            border-left: 8px solid var(--primary-color); /* Border lebih tebal */
+        /* Animasi Fade In Up */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .schedule-card:hover {
-            transform: translateY(-12px); /* Animasi hover lebih menonjol */
-            box-shadow: 0 20px 45px var(--shadow-medium); /* Shadow lebih kuat */
+        /* Animasi Bounce In */
+        @keyframes bounceIn {
+            0% { transform: scale(0.1); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
         }
 
-        .schedule-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--dark-color);
-            margin-bottom: 25px;
-            font-weight: 700;
-            font-size: 1.6em; /* Lebih besar */
-            display: flex;
-            align-items: center;
+        /* Kelas untuk menerapkan animasi */
+        .animate-fade-in-down { animation: fadeInDown 1s ease-out forwards; }
+        .animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; }
+        .animate-bounce-in { animation: bounceIn 1s ease-out forwards; }
+
+        /* Padding umum untuk setiap bagian (section) */
+        .section-padding {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
         }
 
-        .schedule-card h3 i {
-            color: var(--primary-color);
-            margin-right: 18px; /* Jarak lebih lebar */
-            font-size: 1.4em; /* Lebih besar */
+        /* Efek hover untuk kartu layanan */
+        .card-service:hover {
+            transform: translateY(-8px); /* Sedikit bergerak ke atas */
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1); /* Bayangan yang lebih besar */
         }
 
-        .schedule-card ul {
-            padding-left: 0;
+        /* Efek hover untuk kartu portofolio */
+        .card-portfolio:hover {
+            transform: scale(1.03); /* Sedikit membesar */
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1); /* Bayangan yang lebih besar */
         }
 
-        .schedule-card ul li {
-            margin-bottom: 15px; /* Jarak lebih lebar */
-            padding-left: 35px; /* Padding lebih besar */
-            position: relative;
-            font-size: 1.1em; /* Lebih besar */
-            color: var(--text-color);
+        /* Gaya dasar untuk kartu testimoni */
+        .testimonial-card {
+            background-color: white;
+            color: #334155;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s ease-in-out;
         }
 
-        .schedule-card ul li i {
-            color: var(--secondary-color);
-            position: absolute;
-            left: 0;
-            top: 4px; /* Posisi ikon */
-            font-size: 1.2em; /* Lebih besar */
+        /* Efek hover untuk kartu testimoni */
+        .testimonial-card:hover {
+            transform: scale(1.05); /* Sedikit membesar */
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1); /* Bayangan yang lebih besar */
         }
 
-        /* --- Material Section --- */
-        .material-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ukuran min lebih besar */
-            gap: 35px; /* Jarak lebih lebar */
-        }
-
-        .material-card {
-            background-color: var(--white-color);
-            padding: 35px; /* Padding lebih besar */
-            border-radius: var(--border-radius);
-            box-shadow: 0 10px 25px var(--shadow-light); /* Shadow lebih kuat */
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-bottom: 5px solid var(--secondary-color); /* Border bawah warna sekunder */
-        }
-
-        .material-card:hover {
-            transform: translateY(-10px); /* Animasi hover lebih menonjol */
-            box-shadow: 0 15px 35px var(--shadow-medium);
-        }
-
-        .material-card i {
-            font-size: 3.5em; /* Lebih besar */
-            color: var(--primary-color);
-            margin-bottom: 25px; /* Jarak lebih lebar */
-        }
-
-        .material-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.6em; /* Lebih besar */
-            color: var(--dark-color);
-            margin-bottom: 18px; /* Jarak lebih lebar */
-        }
-
-        .material-card p {
-            font-size: 1em;
-            margin-bottom: 30px; /* Jarak lebih lebar */
-            color: #555;
-        }
-
-        /* --- About Section (Video & Gallery) --- */
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            margin: 40px auto 60px auto;
-            max-width: 900px;
-            background-color: var(--dark-color);
-            border-radius: var(--border-radius);
-            box-shadow: 0 10px 30px var(--shadow-medium); /* Shadow lebih kuat */
-            border: 3px solid var(--accent-color); /* Border aksen */
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            border-radius: var(--border-radius);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Ukuran min lebih besar */
-            gap: 25px; /* Jarak lebih lebar */
-            margin-top: 40px;
-        }
-
-        .gallery-grid img {
-            width: 100%;
-            height: 200px; /* Tinggi lebih besar */
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            box-shadow: 0 6px 15px var(--shadow-light); /* Shadow lebih kuat */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            border: 2px solid var(--light-color); /* Border ringan */
-        }
-
-        .gallery-grid img:hover {
-            transform: scale(1.05); /* Skala lebih besar */
-            box-shadow: 0 12px 25px var(--shadow-medium);
-            border-color: var(--primary-color); /* Border warna primer */
-        }
-
-        /* --- Lightbox --- */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9); /* Lebih gelap */
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(10px); /* Blur lebih kuat */
-            -webkit-backdrop-filter: blur(10px); /* For Safari */
-        }
-
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            border-radius: var(--border-radius);
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8); /* Shadow lebih kuat */
-            animation: fadeInZoom 0.4s ease-out; /* Animasi lebih lama */
-        }
-
-        /* --- Team Section --- */
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Ukuran min lebih besar */
-            gap: 35px; /* Jarak lebih lebar */
-        }
-
-        .team-card {
-            background-color: var(--white-color);
-            padding: 35px; /* Padding lebih besar */
-            border-radius: var(--border-radius);
-            box-shadow: 0 10px 25px var(--shadow-light); /* Shadow lebih kuat */
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-bottom: 5px solid var(--primary-color); /* Border bawah warna primer */
-        }
-
-        .team-card:hover {
-            transform: translateY(-10px); /* Animasi hover lebih menonjol */
-            box-shadow: 0 15px 35px var(--shadow-medium);
-        }
-
-        .team-card img {
-            width: 160px; /* Lebih besar */
-            height: 160px; /* Lebih besar */
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--secondary-color); /* Border warna sekunder */
-            margin-bottom: 25px; /* Jarak lebih lebar */
-            box-shadow: 0 5px 15px var(--shadow-medium); /* Shadow lebih kuat */
-        }
-
-        .team-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5em; /* Lebih besar */
-            color: var(--dark-color);
-            margin-bottom: 8px;
-        }
-
-        .team-card p {
-            color: #7f8c8d;
-            font-weight: 500;
-            font-size: 1.05em;
-        }
-
-        /* --- Testimonial Section --- */
-        .testimonial-container {
-            background: linear-gradient(to right, var(--primary-color), #FF9F1C); /* Gradient */
-            color: var(--white-color);
-            padding: 60px; /* Padding lebih besar */
-            border-radius: var(--border-radius);
-            text-align: center;
-            max-width: 900px; /* Lebih lebar */
-            margin: 50px auto;
-            box-shadow: 0 15px 40px var(--shadow-strong); /* Shadow lebih kuat */
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonial-container::before {
-            content: '\f10d'; /* Font Awesome quote-left icon */
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 8em; /* Lebih besar */
-            color: rgba(255, 255, 255, 0.1); /* Lebih transparan */
-            z-index: 1;
-        }
-        .testimonial-container::after { /* Quote-right icon */
-            content: '\f10e';
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            font-size: 8em;
-            color: rgba(255, 255, 255, 0.1);
-            z-index: 1;
-        }
-
-        .testimonial-container p {
-            font-size: 1.5em; /* Lebih besar */
-            font-style: italic;
-            margin-bottom: 30px; /* Jarak lebih lebar */
-            position: relative;
-            z-index: 2;
-            line-height: 1.6;
-        }
-
-        .testimonial-container .author {
-            font-weight: 700; /* Lebih tebal */
-            font-size: 1.2em; /* Lebih besar */
-            position: relative;
-            z-index: 2;
-            color: var(--accent-color); /* Warna aksen */
-        }
-
-        /* --- FAQ Section (Accordion) --- */
-        .faq-item {
-            background-color: var(--white-color);
-            padding: 30px; /* Padding lebih besar */
-            margin-bottom: 25px; /* Jarak lebih lebar */
-            border-radius: var(--border-radius);
-            box-shadow: 0 8px 20px var(--shadow-light); /* Shadow lebih kuat */
-            cursor: pointer;
-            transition: box-shadow 0.3s ease, border-color 0.3s ease;
-            border: 2px solid transparent; /* Border transparan */
-        }
-
-        .faq-item:hover {
-            box-shadow: 0 12px 30px var(--shadow-medium);
-            border-color: var(--primary-color); /* Border warna primer */
-        }
-
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.35em; /* Lebih besar */
-            color: var(--dark-color);
-            font-weight: 700; /* Lebih tebal */
-            margin: 0;
-            transition: color 0.3s ease;
-        }
-
-        .faq-question:hover {
-            color: var(--primary-color);
-        }
-
-        .faq-question i {
-            font-size: 0.9em;
-            color: var(--primary-color);
-            transition: transform 0.3s ease;
-        }
-
-        .faq-item.active .faq-question i {
-            transform: rotate(45deg); /* Change plus to close/X */
-            color: var(--secondary-color); /* Warna sekunder saat aktif */
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.6s ease-in-out, padding 0.6s ease-in-out; /* Transisi lebih lama */
-            padding-top: 0;
-            font-size: 1.05em;
-            color: var(--text-color);
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px; /* Adjust as needed */
-            padding-top: 25px; /* Padding lebih besar */
-        }
-
-        /* --- Contact Section --- */
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px; /* Jarak lebih lebar */
-            margin-top: 40px;
-        }
-
-        .contact-info p {
-            font-size: 1.2em; /* Lebih besar */
-            display: flex;
-            align-items: center;
-            color: var(--text-color);
-            font-weight: 500;
-        }
-
-        .contact-info p i {
-            margin-right: 15px; /* Jarak lebih lebar */
-            color: var(--primary-color);
-            font-size: 1.5em; /* Lebih besar */
-        }
-
-        .contact-info a {
-            font-weight: 600;
-            color: var(--dark-color); /* Warna teks lebih gelap */
-            transition: color 0.3s ease;
-        }
-        .contact-info a:hover {
-            color: var(--primary-color);
-        }
-
-
-        /* --- Footer --- */
-        footer {
-            background: var(--dark-color);
-            color: var(--light-color);
-            text-align: center;
-            padding: 40px 0; /* Padding lebih besar */
-            margin-top: 80px;
-            font-size: 1em;
-            box-shadow: 0 -5px 15px var(--shadow-medium); /* Shadow lebih kuat */
-        }
-
-        /* --- Scroll Reveal Animation --- */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px); /* Geser lebih jauh */
-            transition: opacity 0.9s ease-out, transform 0.9s ease-out; /* Transisi lebih lama */
-            will-change: transform, opacity; /* Performance optimization */
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- Responsive Design --- */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3.8em;
-            }
-            .hero p {
-                font-size: 1.5em;
-            }
-            .heading-primary {
-                font-size: 2.8em;
-                margin-bottom: 50px;
-            }
-            .countdown-timer {
-                padding: 25px 40px;
-            }
-            #countdown {
-                font-size: 3.2em;
-            }
-            .main-nav ul li {
-                margin: 0 12px;
-            }
-            .section-padded {
-                padding: 60px 0;
-            }
-            .schedule-card, .material-card, .team-card, .faq-item {
-                padding: 30px;
-            }
-            .testimonial-container {
-                padding: 40px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                height: 70vh;
-            }
-            .hero h1 {
-                font-size: 3em;
-            }
-            .hero p {
-                font-size: 1.2em;
-            }
-            .heading-primary {
-                font-size: 2.2em;
-                margin-bottom: 40px;
-            }
-            #countdown {
-                font-size: 2.5em;
-            }
-            .main-nav ul {
-                flex-direction: column;
-                gap: 8px;
-            }
-            .main-nav ul li {
-                margin: 0;
-                width: 100%;
-            }
-            .main-nav ul li a {
-                padding: 12px;
-                text-align: center;
-            }
-            .schedule-grid, .material-grid, .gallery-grid, .team-grid {
-                grid-template-columns: 1fr;
-            }
-            .contact-info p {
-                flex-direction: column;
-                text-align: center;
-                gap: 8px;
-            }
-            .contact-info p i {
-                margin-right: 0;
-                margin-bottom: 8px;
-            }
-            .testimonial-container p {
-                font-size: 1.2em;
-            }
-            .faq-question {
-                font-size: 1.2em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2.5em;
-            }
-            .hero p {
-                font-size: 1em;
-            }
-            .heading-primary {
-                font-size: 1.8em;
-                margin-bottom: 30px;
-            }
-            #countdown {
-                font-size: 1.8em;
-            }
-            .btn {
-                padding: 12px 25px;
-                font-size: 0.9em;
-            }
-            .schedule-card h3, .material-card h3, .team-card h3, .faq-question {
-                font-size: 1.3em;
-            }
-            .schedule-card, .material-card, .team-card, .faq-item {
-                padding: 25px;
-            }
-            .testimonial-container {
-                padding: 30px;
-            }
+        /* Gaya untuk ikon di bagian kontak */
+        .contact-info i {
+            color: #4F46E5; /* Warna ikon indigo-600 */
+            margin-right: 0.75rem; /* Jarak antara ikon dan teks */
         }
     </style>
 </head>
 <body>
-    <header class="hero" id="home">
-        <div class="hero-slider-item active" style="background-image: url('https://via.placeholder.com/1920x1080?text=SMKN+5+Yogyakarta+Building+Vibrant');" aria-label="Gedung Utama SMK Negeri 5 Yogyakarta"></div>
-        <div class="hero-slider-item" style="background-image: url('https://via.placeholder.com/1920x1080?text=SMKN+5+Yogyakarta+Building+Vibrant');" aria-label="Siswa-siswi Berinteraksi di Lingkungan Sekolah"></div>
-        <div class="hero-slider-item" style="background-image: url('https://via.placeholder.com/1920x1080?text=SMKN+5+Yogyakarta+Building+Vibrant');" aria-label="Kegiatan Belajar Mengajar di SMKN 5 Yogyakarta"></div>
 
-        <div class="hero-content reveal">
-            <h1>Selamat Datang Calon Peserta Didik Baru!</h1>
-            <p>Jelajahi Dunia Baru, Raih Masa Depan Gemilang di SMK Negeri 5 Yogyakarta</p>
-            <div class="countdown-timer">
-                <h3>MPLS Dimulai Dalam:</h3>
-                <div id="countdown"></div>
-            </div>
-            <a href="#jadwal" class="btn">Lihat Jadwal Lengkap <i class="fas fa-arrow-down"></i></a>
-        </div>
-    </header>
-
-    <nav class="main-nav" id="mainNav">
+    <!-- Navbar (Bilah Navigasi) -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
         <div class="container">
-            <ul>
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#jadwal">Jadwal MPLS</a></li>
-                <li><a href="#materi">Materi & Panduan</a></li>
-                <li><a href="#sekolah">Tentang Sekolah</a></li>
-                <li><a href="#panitia">Tim Panitia</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="#kontak">Kontak</a></li>
-            </ul>
+            <!-- Nama Perusahaan di Navbar -->
+            <a class="navbar-brand text-indigo-600 fw-bold fs-4 rounded-3 p-2" href="#home">Nama Perusahaan Klien Anda</a>
+            <!-- Tombol Toggler untuk Navigasi Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Daftar Menu Navigasi -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-gray-600 hover:text-indigo-600 transition duration-300 rounded-3 p-2" href="#home">Beranda</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-gray-600 hover:text-indigo-600 transition duration-300 rounded-3 p-2" href="#about">Tentang Kami</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-gray-600 hover:text-indigo-600 transition duration-300 rounded-3 p-2" href="#services">Layanan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-gray-600 hover:text-indigo-600 transition duration-300 rounded-3 p-2" href="#portfolio">Portofolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-gray-600 hover:text-indigo-600 transition duration-300 rounded-3 p-2" href="#testimonials">Testimoni</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-gray-600 hover:text-indigo-600 transition duration-300 rounded-3 p-2" href="#contact">Kontak</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
     <main>
-        <section id="jadwal" class="section-padded bg-white">
-            <div class="container">
-                <h2 class="heading-primary reveal">Jadwal Kegiatan MPLS</h2>
-                <div class="schedule-grid">
-                    <div class="schedule-card reveal">
-                        <h3><i class="fas fa-calendar-alt"></i> Hari 1: 22 Juli 2025</h3>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> 07:00 - 07:30: Registrasi Ulang & Apel Pagi</li>
-                            <li><i class="fas fa-check-circle"></i> 07:30 - 09:00: Sambutan Kepala Sekolah & Pembukaan MPLS</li>
-                            <li><i class="fas fa-check-circle"></i> 09:00 - 10:30: Pengenalan Lingkungan Sekolah (Online/Offline)</li>
-                            <li><i class="fas fa-check-circle"></i> 10:30 - 11:00: Istirahat & Snack Break</li>
-                            <li><i class="fas fa-check-circle"></i> 11:00 - 12:30: Perkenalan Guru & Staf Pengajar</li>
-                            <li><i class="fas fa-check-circle"></i> 12:30 - 13:30: Ishoma (Istirahat Sholat Makan)</li>
-                            <li><i class="fas fa-check-circle"></i> 13:30 - 15:00: Sesi Ice Breaking & Pembagian Kelompok</li>
-                        </ul>
-                    </div>
-                    <div class="schedule-card reveal">
-                        <h3><i class="fas fa-calendar-alt"></i> Hari 2: 23 Juli 2025</h3>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> 07:00 - 07:30: Apel Pagi & Pembekalan Kedisiplinan</li>
-                            <li><i class="fas fa-check-circle"></i> 07:30 - 09:00: Materi Wawasan Kebangsaan & Bela Negara</li>
-                            <li><i class="fas fa-check-circle"></i> 09:00 - 10:30: Etika dan Tata Krama Siswa</li>
-                            <li><i class="fas fa-check-circle"></i> 10:30 - 11:00: Istirahat & Snack Break</li>
-                            <li><i class="fas fa-check-circle"></i> 11:00 - 12:30: Kesehatan Remaja & Narkoba</li>
-                            <li><i class="fas fa-check-circle"></i> 12:30 - 13:30: Ishoma</li>
-                            <li><i class="fas fa-check-circle"></i> 13:30 - 15:00: Pengenalan Program Keahlian & Ekstrakurikuler</li>
-                        </ul>
-                    </div>
-                </div>
-                <p class="text-center" style="font-size: 1.05em; margin-top: 40px; color: #555;">*Jadwal dapat berubah sewaktu-waktu sesuai kebijakan sekolah. Informasi terbaru akan diumumkan melalui grup resmi.</p>
+        <!-- Hero Section (Bagian Pembuka) -->
+        <section id="home" class="hero-section">
+            <!-- Latar Belakang Gambar Hero -->
+            <div class="hero-bg" style="background-image: url('https://placehold.co/1920x1080/4F46E5/FFFFFF?text=Latar+Belakang+Perusahaan');"></div>
+            <!-- Konten Hero -->
+            <div class="hero-content">
+                <h1 class="display-3 fw-bolder lh-base mb-4 animate-fade-in-down">Solusi Inovatif untuk Masa Depan Bisnis Anda</h1>
+                <p class="lead mb-5 opacity-90 animate-fade-in-up">Kami membantu bisnis Anda berkembang dengan solusi digital terdepan.</p>
+                <a href="#services" class="btn btn-hero animate-bounce-in">
+                    Jelajahi Layanan Kami <i class="fas fa-chevron-right ms-2"></i>
+                </a>
             </div>
         </section>
 
-        <section id="materi" class="section-padded bg-light">
+        <!-- About Us Section (Tentang Kami) -->
+        <section id="about" class="section-padding bg-light">
             <div class="container">
-                <h2 class="heading-primary reveal">Materi & Panduan MPLS</h2>
-                <div class="material-grid">
-                    <div class="material-card reveal">
-                        <i class="fas fa-book-open"></i>
-                        <h3>Buku Panduan MPLS</h3>
-                        <p>Unduh panduan lengkap MPLS, berisi tata tertib, perlengkapan yang harus dibawa, dan informasi penting lainnya.</p>
-                        <a href="panduan_mpls_2025_smkn5yk.pdf" target="_blank" class="btn btn-small">Unduh PDF <i class="fas fa-download"></i></a>
+                <h2 class="display-4 fw-bold text-center text-gray-800 mb-5">Tentang Kami</h2>
+                <div class="row align-items-center g-5">
+                    <div class="col-md-6">
+                        <!-- Gambar Bagian Tentang Kami -->
+                        <img src="https://placehold.co/600x400/E0E7FF/4F46E5?text=Gambar+Tentang+Kami" alt="Tentang Kami" class="img-fluid rounded-lg shadow-lg">
                     </div>
-                    <div class="material-card reveal">
-                        <i class="fas fa-graduation-cap"></i>
-                        <h3>Profil Sekolah & Program Keahlian</h3>
-                        <p>Kenali lebih dekat visi, misi, dan berbagai program keahlian unggulan yang ada di SMK Negeri 5 Yogyakarta.</p>
-                        <a href="#" class="btn btn-small" id="btn-profil-sekolah">Lihat Info <i class="fas fa-info-circle"></i></a>
-                    </div>
-                    <div class="material-card reveal">
-                        <i class="fas fa-clipboard-list"></i>
-                        <h3>Daftar Perlengkapan</h3>
-                        <p>Pastikan kamu membawa semua perlengkapan yang dibutuhkan setiap hari selama kegiatan MPLS berlangsung.</p>
-                        <button class="btn btn-small btn-outline" id="show-perlengkapan">Lihat Daftar <i class="fas fa-eye"></i></button>
+                    <div class="col-md-6">
+                        <!-- Deskripsi Perusahaan -->
+                        <p class="fs-5 text-gray-700 lh-base mb-4">
+                            Kami adalah perusahaan terkemuka yang berdedikasi untuk menyediakan solusi inovatif dan berkualitas tinggi yang membantu klien kami mencapai tujuan bisnis mereka. Dengan tim ahli yang berpengalaman dan komitmen terhadap keunggulan, kami siap menjadi mitra strategis Anda.
+                        </p>
+                        <p class="fs-5 text-gray-700 lh-base">
+                            Didirikan pada tahun 20XX, kami telah melayani berbagai klien dari berbagai industri, membantu mereka menavigasi lanskap digital yang terus berkembang. Keahlian kami mencakup pengembangan web, desain UI/UX, pemasaran digital, dan konsultasi IT.
+                        </p>
+                        <!-- Tombol Hubungi Kami -->
+                        <a href="#contact" class="btn btn-primary mt-4 px-4 py-2 rounded-md fw-semibold shadow-sm transition duration-300 transform hover:scale-105">Hubungi Kami</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="sekolah" class="section-padded bg-white">
+        <!-- Services Section (Layanan Kami) -->
+        <section id="services" class="section-padding bg-white">
             <div class="container">
-                <h2 class="heading-primary reveal">Tentang SMK Negeri 5 Yogyakarta</h2>
-                <p class="text-center reveal" style="font-size: 1.15em; max-width: 800px; margin: 0 auto 50px auto;">SMK Negeri 5 Yogyakarta adalah institusi pendidikan kejuruan terkemuka yang telah berkarya sejak **1980**, berkomitmen untuk mencetak lulusan kompeten, berkarakter, dan siap menghadapi tantangan global. Kami menyediakan fasilitas modern dan lingkungan belajar yang inspiratif untuk pengembangan potensi setiap peserta didik.</p>
-
-                <h3 class="heading-primary" style="font-size: 2em; margin-bottom: 30px; margin-top: 80px;">Tur Virtual Sekolah</h3>
-                <div class="video-container reveal">
-                    <iframe src="https://youtu.be/dF7Lbk_b2pE?si=HYnz-8KopmST8OT1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-
-                <h3 class="heading-primary" style="font-size: 2em; margin-bottom: 30px; margin-top: 80px;">Galeri Kegiatan & Fasilitas</h3>
-                <div class="gallery-grid reveal">
-                    <img src="https://via.placeholder.com/1920x1080?text=SMKN+5+Yogyakarta+Building+Vibrant" alt="Gerbang Utama Sekolah">
-                    <img src="https://via.placeholder.com/600x400?text=Ruang+Kelas+Modern+Warna" alt="Ruang Kelas Modern">
-                    <img src="https://via.placeholder.com/600x400?text=Lab+Komputer+Canggih+Warna" alt="Laboratorium Komputer Canggih">
-                    <img src="https://via.placeholder.com/600x400?text=Perpustakaan+Nyaman+Warna" alt="Perpustakaan Sekolah yang Nyaman">
-                    <img src="https://via.placeholder.com/600x400?text=Lapangan+Olahraga+Luas+Warna" alt="Lapangan Olahraga">
-                    <img src="https://via.placeholder.com/600x400?text=Workshop+Praktik+Siswa+Warna" alt="Workshop Praktik Siswa">
-                    <img src="https://via.placeholder.com/600x400?text=Kegiatan+MPLS+2024+Warna" alt="Kegiatan MPLS Tahun Lalu">
-                    <img src="https://via.placeholder.com/600x400?text=Ekstrakurikuler+Seni+Warna" alt="Kegiatan Ekstrakurikuler Seni">
-                </div>
-            </div>
-        </section>
-
-        <div id="lightbox" class="lightbox">
-            <span class="lightbox-close">×</span>
-            <img class="lightbox-content" id="lightbox-img" alt="Enlarged image">
-        </div>
-
-        <section id="panitia" class="section-padded bg-light">
-            <div class="container">
-                <h2 class="heading-primary reveal">Tim Panitia MPLS 2025</h2>
-                <p class="text-center reveal" style="font-size: 1.15em; margin-bottom: 50px; color: #555;">Kenali bapak/ibu guru dan kakak-kakak panitia yang akan membimbingmu selama MPLS. Jangan sungkan untuk bertanya!</p>
-                <div class="team-grid">
-                    <div class="team-card reveal">
-                        <img src="https://via.placeholder.com/200x200?text=Bpk+Andi+Panitia" alt="Foto Bapak Andi S.Pd">
-                        <h3>Bpk. Andi S.Pd</h3>
-                        <p>Ketua Panitia MPLS</p>
-                    </div>
-                    <div class="team-card reveal">
-                        <img src="https://via.placeholder.com/200x200?text=Ibu+Putri+Panitia" alt="Foto Ibu Putri M.Pd">
-                        <h3>Ibu Putri M.Pd</h3>
-                        <p>Koordinator Akademik</p>
-                    </div>
-                    <div class="team-card reveal">
-                        <img src="https://via.placeholder.com/200x200?text=Kak+Rizky+Panitia" alt="Foto Kak Rizky">
-                        <h3>Rizky Pratama</h3>
-                        <p>Perwakilan OSIS - Sie Acara</p>
-                    </div>
-                    <div class="team-card reveal">
-                        <img src="https://via.placeholder.com/200x200?text=Kak+Siti+Panitia" alt="Foto Kak Siti">
-                        <h3>Siti Nurhaliza</h3>
-                        <p>Perwakilan OSIS - Sie Logistik</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="testimonial" class="section-padded bg-white">
-            <div class="container">
-                <h2 class="heading-primary reveal">Apa Kata Mereka Tentang MPLS Kami?</h2>
-                <div class="testimonial-container reveal">
-                    <p>"MPLS di SMK Negeri 5 Yogyakarta benar-benar luar biasa! Saya merasa sangat disambut dan langsung akrab dengan lingkungan serta teman-teman baru. Pengalaman yang tak terlupakan dan sangat bermanfaat untuk memulai babak baru di sekolah ini."</p>
-                    <div class="author">- Budi Santoso, Alumni Angkatan 2024</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" class="section-padded bg-light">
-            <div class="container">
-                <h2 class="heading-primary reveal">Pertanyaan Umum (FAQ)</h2>
-                <div class="faq-list">
-                    <div class="faq-item reveal">
-                        <h3 class="faq-question">Apa itu MPLS dan mengapa saya harus mengikutinya? <i class="fas fa-plus"></i></h3>
-                        <div class="faq-answer">
-                            <p>MPLS (Masa Pengenalan Lingkungan Sekolah) adalah kegiatan wajib bagi peserta didik baru untuk beradaptasi dengan lingkungan, budaya, dan peraturan sekolah. Melalui MPLS, Anda akan mengenal guru dan staf, teman-teman baru, fasilitas sekolah, serta program-program unggulan. Ini adalah fondasi penting untuk memulai perjalanan pendidikan yang sukses di SMK Negeri 5 Yogyakarta.</p>
+                <h2 class="display-4 fw-bold text-center text-gray-800 mb-5">Layanan Kami</h2>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                    <!-- Kartu Layanan 1 -->
+                    <div class="col">
+                        <div class="card h-100 p-4 rounded-lg shadow-sm border border-gray-200 card-service transition duration-300">
+                            <div class="text-indigo-600 mb-3"><i class="fas fa-code fa-2x"></i></div>
+                            <h3 class="fs-5 fw-semibold text-gray-900 mb-2">Pengembangan Web Kustom</h3>
+                            <p class="text-gray-600">Membangun website yang unik dan fungsional sesuai kebutuhan spesifik Anda.</p>
                         </div>
                     </div>
-                    <div class="faq-item reveal">
-                        <h3 class="faq-question">Kapan dan di mana MPLS akan dilaksanakan? <i class="fas fa-plus"></i></h3>
-                        <div class="faq-answer">
-                            <p>MPLS 2025 akan dilaksanakan pada tanggal **22 - 23 Juli 2025** di lingkungan kampus SMK Negeri 5 Yogyakarta. Detail jadwal dan lokasi spesifik setiap sesi akan disampaikan pada hari pertama MPLS dan juga melalui grup komunikasi resmi.</p>
+                    <!-- Kartu Layanan 2 -->
+                    <div class="col">
+                        <div class="card h-100 p-4 rounded-lg shadow-sm border border-gray-200 card-service transition duration-300">
+                            <div class="text-indigo-600 mb-3"><i class="fas fa-palette fa-2x"></i></div>
+                            <h3 class="fs-5 fw-semibold text-gray-900 mb-2">Desain UI/UX</h3>
+                            <p class="text-gray-600">Menciptakan pengalaman pengguna yang intuitif dan antarmuka yang menarik.</p>
                         </div>
                     </div>
-                    <div class="faq-item reveal">
-                        <h3 class="faq-question">Apa saja yang harus saya siapkan untuk MPLS? <i class="fas fa-plus"></i></h3>
-                        <div class="faq-answer">
-                            <p>Anda diwajibkan membawa alat tulis lengkap, buku catatan, botol minum pribadi (reusable), serta mengenakan seragam yang sudah ditentukan (atau pakaian rapi dan sopan jika seragam belum tersedia). Detail perlengkapan lainnya dapat dilihat pada "Daftar Perlengkapan" di bagian Materi & Panduan.</p>
+                    <!-- Kartu Layanan 3 -->
+                    <div class="col">
+                        <div class="card h-100 p-4 rounded-lg shadow-sm border border-gray-200 card-service transition duration-300">
+                            <div class="text-indigo-600 mb-3"><i class="fas fa-chart-line fa-2x"></i></div>
+                            <h3 class="fs-5 fw-semibold text-gray-900 mb-2">Pemasaran Digital</h3>
+                            <p class="text-gray-600">Meningkatkan visibilitas online dan menjangkau target audiens Anda.</p>
                         </div>
                     </div>
-                    <div class="faq-item reveal">
-                        <h3 class="faq-question">Bagaimana jika saya sakit atau berhalangan hadir? <i class="fas fa-plus"></i></h3>
-                        <div class="faq-answer">
-                            <p>Jika Anda tidak dapat hadir karena sakit atau halangan mendesak lainnya, mohon segera memberitahukan kepada pihak panitia MPLS dengan menghubungi nomor kontak yang tertera di bagian bawah halaman ini. Surat keterangan dokter atau surat izin dari orang tua/wali sangat kami harapkan.</p>
+                    <!-- Kartu Layanan 4 -->
+                    <div class="col">
+                        <div class="card h-100 p-4 rounded-lg shadow-sm border border-gray-200 card-service transition duration-300">
+                            <div class="text-indigo-600 mb-3"><i class="fas fa-laptop-code fa-2x"></i></div>
+                            <h3 class="fs-5 fw-semibold text-gray-900 mb-2">Konsultasi IT</h3>
+                            <p class="text-gray-600">Memberikan saran ahli untuk mengoptimalkan infrastruktur teknologi Anda.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="kontak" class="section-padded bg-white">
+        <!-- Portfolio Section (Portofolio Kami) -->
+        <section id="portfolio" class="section-padding bg-light">
             <div class="container">
-                <h2 class="heading-primary reveal">Hubungi Kami</h2>
-                <p class="text-center reveal" style="font-size: 1.15em; margin-bottom: 50px; color: #555;">Tim panitia MPLS siap membantu Anda. Jangan ragu untuk menghubungi kami jika ada pertanyaan atau kendala.</p>
-                <div class="contact-info reveal">
-                    <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mpls@smkn5yogyakarta.sch.id">mpls@smkn5yogyakarta.sch.id</a></p>
-                    <p><i class="fab fa-whatsapp"></i> <strong>WhatsApp Panitia:</strong> <a href="https://wa.me/6281234567890" target="_blank">+62 812-3456-7890</a></p>
-                    <p><i class="fas fa-phone-alt"></i> <strong>Telepon Sekolah:</strong> <a href="tel:+62274123456">+62 (274) 123456</a></p>
-                    <p><i class="fas fa-map-marker-alt"></i> <strong>Alamat:</strong> Jl. Pendidikan No. 5, Sleman, Yogyakarta</p>
+                <h2 class="display-4 fw-bold text-center text-gray-800 mb-5">Portofolio Kami</h2>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
+                    <!-- Kartu Proyek 1 -->
+                    <div class="col">
+                        <div class="card h-100 rounded-lg shadow-sm overflow-hidden card-portfolio transition duration-300">
+                            <img src="https://placehold.co/400x300/F0F4F8/334155?text=Proyek+1" class="card-img-top h-48 object-fit-cover" alt="Proyek E-commerce Modern">
+                            <div class="card-body p-4">
+                                <h3 class="card-title fs-5 fw-semibold text-gray-900 mb-2">Proyek E-commerce Modern</h3>
+                                <p class="card-text text-indigo-600 fw-medium">Pengembangan Web</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Kartu Proyek 2 -->
+                    <div class="col">
+                        <div class="card h-100 rounded-lg shadow-sm overflow-hidden card-portfolio transition duration-300">
+                            <img src="https://placehold.co/400x300/E2E8F0/334155?text=Proyek+2" class="card-img-top h-48 object-fit-cover" alt="Aplikasi Mobile Inovatif">
+                            <div class="card-body p-4">
+                                <h3 class="card-title fs-5 fw-semibold text-gray-900 mb-2">Aplikasi Mobile Inovatif</h3>
+                                <p class="card-text text-indigo-600 fw-medium">Desain UI/UX</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Kartu Proyek 3 -->
+                    <div class="col">
+                        <div class="card h-100 rounded-lg shadow-sm overflow-hidden card-portfolio transition duration-300">
+                            <img src="https://placehold.co/400x300/CBD5E1/334155?text=Proyek+3" class="card-img-top h-48 object-fit-cover" alt="Kampanye Pemasaran Digital">
+                            <div class="card-body p-4">
+                                <h3 class="card-title fs-5 fw-semibold text-gray-900 mb-2">Kampanye Pemasaran Digital</h3>
+                                <p class="card-text text-indigo-600 fw-medium">Pemasaran Digital</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Kartu Proyek 4 -->
+                    <div class="col">
+                        <div class="card h-100 rounded-lg shadow-sm overflow-hidden card-portfolio transition duration-300">
+                            <img src="https://placehold.co/400x300/94A3B8/334155?text=Proyek+4" class="card-img-top h-48 object-fit-cover" alt="Sistem Manajemen Data">
+                            <div class="card-body p-4">
+                                <h3 class="card-title fs-5 fw-semibold text-gray-900 mb-2">Sistem Manajemen Data</h3>
+                                <p class="card-text text-indigo-600 fw-medium">Konsultasi IT</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section (Testimoni Klien) -->
+        <section id="testimonials" class="section-padding bg-indigo-700 text-white">
+            <div class="container">
+                <h2 class="display-4 fw-bold text-center mb-5">Apa Kata Klien Kami</h2>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    <!-- Kartu Testimoni 1 -->
+                    <div class="col">
+                        <div class="testimonial-card transform hover:scale-105 transition duration-300">
+                            <div class="d-flex mb-3">
+                                <i class="fas fa-star text-warning me-1"></i>
+                                <i class="fas fa-star text-warning me-1"></i>
+                                <i class="fas fa-star text-warning me-1"></i>
+                                <i class="fas fa-star text-warning me-1"></i>
+                                <i class="fas fa-star text-warning me-1"></i>
+                            </div>
+                            <p class="fs-5 fst-italic mb-3">"Layanan yang luar biasa! Tim sangat profesional dan hasilnya melampaui ekspektasi kami."</p>
+                            <p class="fw-semibold text-indigo-600 mb-0">Budi Santoso</p>
+                            <p class="text-sm text-gray-600">CEO, PT Maju Bersama</p>
+                        </div>
+                    </div>
+                    <!-- Kartu Testimoni 2 -->
+                    <div class="col">
+                        <div class="testimonial-card transform hover:scale-105 transition duration-300">
+                            <div class="d-flex mb-3">
+                                <i class="fas fa-star text-warning me-1"></i>
+                                <i class="fas fa-star text-warning me-1"></i>
+                                <i class="fas fa-star text-warning me-1"></i>
+                                <i class="fas fa-star text-warning me-1"></i>
+                                <i class="fas fa-star text-warning me-1"></i>
+                            </div>
+                            <p class="fs-5 fst-italic mb-3">"Sangat puas dengan website baru kami. Desainnya modern dan sangat responsif."</p>
+                            <p class="fw-semibold text-indigo-600 mb-0">Siti Aminah</p>
+                            <p class="text-sm text-gray-600">Direktur, CV Jaya Abadi</p>
+                        </div>
+                    </div>
+                    <!-- Kartu Testimoni 3 -->
+                    <div class="col">
+                        <div class="testimonial-card transform hover:scale-105 transition duration-300">
+                            <div class="d-flex mb-3">
+                                <i class="fas fa-star text-warning me-1"></i>
+                                <i class="fas fa-star text-warning me-1"></i>
+                                <i class="fas fa-star text-warning me-1"></i>
+                                <i class="fas fa-star text-warning me-1"></i>
+                                <i class="fas fa-star text-warning me-1"></i>
+                            </div>
+                            <p class="fs-5 fst-italic mb-3">"Mereka membantu kami mencapai target pemasaran digital kami. Sangat direkomendasikan!"</p>
+                            <p class="fw-semibold text-indigo-600 mb-0">Agus Wijaya</p>
+                            <p class="text-sm text-gray-600">Manajer Pemasaran, Global Solution</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Section (Hubungi Kami) -->
+        <section id="contact" class="section-padding bg-white">
+            <div class="container">
+                <h2 class="display-4 fw-bold text-center text-gray-800 mb-5">Hubungi Kami</h2>
+                <div class="row g-5 justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card p-4 rounded-lg shadow-lg border border-gray-200">
+                            <h3 class="fs-4 fw-semibold text-gray-900 mb-4">Kirim Pesan kepada Kami</h3>
+                            <!-- Formulir Kontak -->
+                            <form id="contactForm">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label text-sm fw-medium text-gray-700">Nama Lengkap</label>
+                                    <input type="text" class="form-control rounded-md shadow-sm" id="name" placeholder="Nama Anda" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label text-sm fw-medium text-gray-700">Email</label>
+                                    <input type="email" class="form-control rounded-md shadow-sm" id="email" placeholder="email@contoh.com" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label text-sm fw-medium text-gray-700">Pesan Anda</label>
+                                    <textarea class="form-control rounded-md shadow-sm" id="message" rows="4" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100 py-3 rounded-md fw-semibold shadow-sm hover:bg-indigo-700 transition duration-300">Kirim Pesan</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card p-4 rounded-lg shadow-lg border border-gray-200">
+                            <h3 class="fs-4 fw-semibold text-gray-900 mb-4">Informasi Kontak</h3>
+                            <!-- Detail Kontak -->
+                            <div class="mb-4 contact-info">
+                                <p class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-map-marker-alt fa-lg"></i>
+                                    Jl. Contoh No. 123, Kota Anda, Negara Anda
+                                </p>
+                                <p class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-phone fa-lg"></i>
+                                    +62 812 3456 7890
+                                </p>
+                                <p class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-envelope fa-lg"></i>
+                                    info@namaperusahaan.com
+                                </p>
+                            </div>
+                            <div>
+                                <!-- Google Maps Embed - Ganti dengan embed map lokasi klien Anda -->
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.36647900995!2d106.8188147147708!3d-6.208763995508827!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e4b7b2f2d1%3A0x4a5d7c8e6f7b8c9d!2sMonumen%20Nasional!5e0!3m2!1sen!2sid!4v1678901234567!5m2!1sen!2sid"
+                                    width="100%"
+                                    height="300"
+                                    style="border:0;"
+                                    allowfullscreen=""
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    class="rounded-lg shadow-md"
+                                ></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <p>© 2025 SMK Negeri 5 Yogyakarta. Hak Cipta Dilindungi Undang-Undang.</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container text-center">
+            <p class="mb-3">&copy; <span id="currentYear"></span> Nama Perusahaan Klien Anda. Hak Cipta Dilindungi.</p>
+            <div class="d-flex justify-content-center gap-4">
+                <!-- Tautan Media Sosial (Ganti dengan tautan klien Anda) -->
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-facebook-f fa-lg"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-twitter fa-lg"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram fa-lg"></i></a>
+            </div>
         </div>
     </footer>
 
+    <!-- Bootstrap Bundle with Popper (JavaScript untuk fungsionalitas Bootstrap) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
     <script>
-        // --- Smooth Scroll & Active Nav Link ---
-        document.querySelectorAll('nav ul li a').forEach(anchor => {
+        // JavaScript untuk smooth scrolling saat mengklik tautan navigasi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
+                e.preventDefault(); // Mencegah perilaku default tautan
 
-                if (targetSection) {
-                    // Adjust scroll position to account for sticky nav
-                    const navHeight = document.getElementById('mainNav').offsetHeight;
-                    const offsetTop = targetSection.offsetTop - navHeight;
-
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-
-                    // Update active class
-                    document.querySelectorAll('nav ul li a').forEach(link => link.classList.remove('active'));
-                    this.classList.add('active');
-                }
-            });
-        });
-
-        // --- Sticky Nav & Active Link on Scroll ---
-        const mainNav = document.getElementById('mainNav');
-        const sections = document.querySelectorAll('section, header.hero'); // Include hero for home link
-
-        const updateNavOnScroll = () => {
-            let currentActiveSectionId = '';
-            const scrollY = window.scrollY;
-            const navHeight = mainNav.offsetHeight; // Get current nav height
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - navHeight - 1; // Adjust for nav height
-                const sectionBottom = sectionTop + section.offsetHeight;
-
-                if (scrollY >= sectionTop && scrollY < sectionBottom) {
-                    currentActiveSectionId = section.getAttribute('id');
-                }
-            });
-
-            document.querySelectorAll('nav ul li a').forEach(link => {
-                link.classList.remove('active');
-                if (currentActiveSectionId && link.getAttribute('href').includes(currentActiveSectionId)) {
-                    link.classList.add('active');
-                }
-            });
-
-            // Sticky nav background change
-            if (scrollY > 50) {
-                mainNav.classList.add('scrolled');
-            } else {
-                mainNav.classList.remove('scrolled');
-            }
-        };
-
-        window.addEventListener('scroll', updateNavOnScroll);
-        // Call on load to set initial active state
-        window.addEventListener('load', updateNavOnScroll);
-
-
-        // --- Countdown Timer ---
-        const countdownElement = document.getElementById('countdown');
-        // Set the date we're counting down to: July 22, 2025, 07:00:00 WIB
-        const countdownDate = new Date("Jul 22, 2025 07:00:00").getTime();
-
-        const countdownInterval = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countdownDate - now;
-
-            if (distance < 0) {
-                clearInterval(countdownInterval);
-                countdownElement.innerHTML = "MPLS SUDAH DIMULAI!";
-                return;
-            }
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            countdownElement.innerHTML = `${days}h ${hours}j ${minutes}m ${seconds}d`;
-        }, 1000);
-
-        // --- Hero Background Slideshow ---
-        const heroSlides = document.querySelectorAll('.hero-slider-item');
-        let currentSlideIndex = 0;
-
-        function showNextSlide() {
-            heroSlides[currentSlideIndex].classList.remove('active');
-            currentSlideIndex = (currentSlideIndex + 1) % heroSlides.length;
-            heroSlides[currentSlideIndex].classList.add('active');
-        }
-        setInterval(showNextSlide, 6000); // Change image every 6 seconds
-
-        // --- Scroll Reveal Animation ---
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOptions = {
-            threshold: 0.1, // Element is 10% visible
-            rootMargin: "0px 0px -50px 0px" // Starts appearing slightly before reaching bottom of viewport
-        };
-
-        const revealOnScroll = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    observer.unobserve(entry.target); // Stop observing once revealed
-                }
-            });
-        }, revealOptions);
-
-        revealElements.forEach(el => {
-            revealOnScroll.observe(el);
-        });
-
-        // --- FAQ Accordion ---
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', () => {
-                // Close other open FAQ items
-                document.querySelectorAll('.faq-item.active').forEach(openItem => {
-                    if (openItem !== item) {
-                        openItem.classList.remove('active');
-                    }
+                // Menggulir ke elemen target dengan efek halus
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
                 });
-                // Toggle clicked item
-                item.classList.toggle('active');
+
+                // Menutup navbar toggler (menu mobile) setelah klik
+                const navbarToggler = document.querySelector('.navbar-toggler');
+                const navbarCollapse = document.querySelector('.navbar-collapse');
+                if (navbarToggler && navbarCollapse.classList.contains('show')) {
+                    navbarToggler.click(); // Mensimulasikan klik untuk menutup menu
+                }
             });
         });
 
-        // --- Material Card - Show Perlengkapan Alert ---
-        document.getElementById('show-perlengkapan').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Daftar perlengkapan MPLS yang WAJIB dibawa:\n\n' +
-                  '1. Alat tulis lengkap (pulpen, pensil, penghapus, penggaris)\n' +
-                  '2. Buku catatan kecil (minimal 1 buah)\n' +
-                  '3. Botol minum pribadi (tumbler, reusable, wajib isi air dari rumah)\n' +
-                  '4. Bekal makanan ringan dan makan siang (disarankan, kantin juga buka)\n' +
-                  '5. Name tag peserta (petunjuk pembuatan akan diberikan di grup resmi)\n' +
-                  '6. Pakaian seragam/pakaian rapi sesuai instruksi (akan diinfokan lebih lanjut)\n' +
-                  '7. Obat-obatan pribadi (jika memiliki riwayat penyakit tertentu)\n' +
-                  '8. Semangat, senyum, dan sikap positif!');
-        });
+        // Memperbarui tahun saat ini di footer secara otomatis
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // --- Material Card - Profil Sekolah Alert (Placeholder) ---
-        document.getElementById('btn-profil-sekolah').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Informasi lebih lanjut mengenai profil sekolah dan program keahlian dapat ditemukan di website resmi SMK Negeri 5 Yogyakarta atau saat sesi pengenalan di hari ke-2 MPLS.');
-        });
+        // Penanganan dasar untuk pengiriman formulir kontak (untuk demonstrasi)
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah pengiriman formulir default
 
-        // --- Gallery Lightbox ---
-        const galleryImages = document.querySelectorAll('.gallery-grid img');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxClose = document.querySelector('.lightbox-close');
+            // Mengambil nilai dari input formulir
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
 
-        galleryImages.forEach(img => {
-            img.addEventListener('click', () => {
-                lightbox.style.display = 'flex';
-                lightboxImg.src = img.src;
-                lightboxImg.alt = img.alt;
-            });
-        });
+            // Di aplikasi nyata, Anda akan mengirim data ini ke server backend
+            console.log('Form Submitted!');
+            console.log('Name:', name);
+            console.log('Email:', email);
+            console.log('Message:', message);
 
-        lightboxClose.addEventListener('click', () => {
-            lightbox.style.display = 'none';
-        });
-
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) { // Only close if clicking outside the image
-                lightbox.style.display = 'none';
-            }
-        });
-
-        // Close lightbox with ESC key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightbox.style.display === 'flex') {
-                lightbox.style.display = 'none';
-            }
+            // Menampilkan pesan sukses (gunakan modal kustom di produksi, bukan alert)
+            alert('Pesan Anda telah terkirim! Kami akan segera menghubungi Anda.');
+            this.reset(); // Mengosongkan bidang formulir
         });
     </script>
 </body>
